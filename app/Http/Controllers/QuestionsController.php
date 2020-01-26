@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Question;
 use App\Category;
+use App\Answer;
 
 class QuestionsController extends Controller
 {
@@ -15,6 +16,7 @@ class QuestionsController extends Controller
      */
     public function index()
     {
+        $questions = Question::withCount('answers')->get();
         return view('categories');
     }
 
@@ -39,7 +41,28 @@ class QuestionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'category_id' => 'required|exists:categories,id',
+            'question' => 'required|unique:questions',
+            'answers' => 'required|array|between:2,4',
+            'correct' => 'required|min:0|max:3',
+        ]);
+
+        if(! isset(request('answers')[request('correct')])) {
+            return redirect()->back()->with('message', 'Please select correct answer');
+        }
+
+        $question = Question::create($request->only('category_id', 'question'));
+        $answers = $request->answers;
+        $answers[request('correct')] = array_merge($answers[request('correct')], ['is_right' => true]);
+
+        collect($answers)->filter(function($answer) {
+            return ! is_null($answer['answer']);
+        })->map(function($answer) use ($question) {
+            $question->answers()->save(new Answer($answer));
+        });
+
+        return redirect()->route('questions.index');
     }
 
     /**

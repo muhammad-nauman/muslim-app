@@ -6,6 +6,7 @@
 
 <link href="{{ url('css/plugins/iCheck/custom.css') }}" rel="stylesheet">
 <link href="{{ url('css/plugins/steps/jquery.steps.css') }}" rel="stylesheet">
+<link href="{{ url('/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -17,29 +18,28 @@
                     Add a New Question Form
                 </h2>
 
-                <form id="form" action="#" class="wizard-big">
+                <form id="form" class="wizard-big" method="POST" action="{{ route('questions.store') }}">
                     {{ csrf_field() }}
                     <h1>Question</h1>
                     <fieldset>
                         <h2>Question Information</h2>
                         <div class="row">
                             <div class="col-lg-8">
-                                <div class="form-group">
-                                    <label>Category *</label>
-                                    <select class="form-control m-b" name="category_id">
-                                        <option value="">Select Category</option>
-                                        @foreach($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                @include('misc.categories_select')
                                 <div class="form-group">
                                     <label>Question *</label>
-                                    <input id="userName" name="userName" type="text" class="form-control required">
+                                    <input id="question" name="question" type="text" class="form-control required">
                                 </div>
                                 <div class="form-group">
-                                    <label>Is Active?</label>
-                                    <input id="password" name="password" type="text" class="form-control required">
+                                    <label class="col-sm-2 control-label">Is Active?</label>
+                                    <div class="col-sm-10">
+                                        <div class="i-checks">
+                                            <label>
+                                                <input type="checkbox" name="is_active" value="yes">
+                                                <i></i>
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -48,25 +48,69 @@
                     <h1>Answers</h1>
                     <fieldset>
                         <h2>Answers Information</h2>
+                        <div class="alert alert-danger alert-dismissable pace-inactive">
+                                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                Please select correct answer.
+                            </div>
+                        <small>Please mark the circle with the correct option</small>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label>First Option *</label>
-                                    <input id="name" name="name" type="text" class="form-control required">
+                                    <label>
+                                        <div class="i-checks">
+                                            <label>
+                                                <input type="radio" value="0" name="correct" data-option="0">
+                                                <i>
+
+                                                </i>
+                                            </label>
+                                        </div>
+                                        First Option *
+                                    </label>
+                                    <input id="name" name="answers[0][answer]" type="text" class="form-control required">
                                 </div>
                                 <div class="form-group">
-                                    <label>Second Option *</label>
-                                    <input id="surname" name="surname" type="text" class="form-control required">
+                                    <label>
+                                        <div class="i-checks">
+                                            <label>
+                                                <input type="radio" value="2" name="correct" data-option="1">
+                                                <i>
+                                                </i>
+                                            </label>
+                                        </div>
+                                        Third Option *
+                                    </label>
+                                    <input id="surname" name="answers[2][answer]" type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label>Third Option *</label>
-                                    <input id="email" name="email" type="text" class="form-control required email">
+                                    <label>
+                                        <div class="i-checks">
+                                            <label>
+                                                <input type="radio" value="1" name="correct" data-option="2">
+                                                <i>
+
+                                                </i>
+                                            </label>
+                                        </div>
+                                        Second Option *
+                                    </label>
+                                    <input id="email" name="answers[1][answer]" type="text" class="form-control required">
                                 </div>
                                 <div class="form-group">
-                                    <label>Fourth Option *</label>
-                                    <input id="address" name="address" type="text" class="form-control">
+                                    <label>
+                                        <div class="i-checks">
+                                            <label>
+                                                <input type="radio" value="3" name="correct" data-option="3">
+                                                <i>
+
+                                                </i>
+                                            </label>
+                                        </div>
+                                        Fourth Option *
+                                    </label>
+                                    <input id="address" name="answers[3][answer]" type="text" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -97,6 +141,8 @@
 
 <!-- Jquery Validate -->
 <script src="{{ url('js/plugins/validate/jquery.validate.min.js') }}"></script>
+<!-- iCheck -->
+<script src="{{ url('/js/plugins/iCheck/icheck.min.js') }}"></script>
 @endsection
 @section('script_code')
 
@@ -124,8 +170,8 @@
                 // form.validate().settings.ignore = ":disabled,:hidden";
 
                 // Start validation; Prevent going forward if false
-                return true;
-                // return form.valid();
+                // return true;
+                return form.valid();
             },
             onStepChanged: function(event, currentIndex, priorIndex) {
 
@@ -141,6 +187,13 @@
                 // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
                 form.validate().settings.ignore = ":disabled";
 
+                if(! $('input[type=radio]').is(':checked')) {
+                    $('.alert-dismissable').removeClass('pace-inactive');
+                    return;
+                }
+
+                console.log(form);
+
                 // Start validation; Prevent form submission if false
                 return form.valid();
             },
@@ -155,6 +208,10 @@
 
 
         ;
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
     });
 </script>
 @endsection

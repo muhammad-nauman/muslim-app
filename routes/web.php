@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('questions.add');
+    return redirect()->route('login');
 });
 
 Auth::routes();
@@ -24,11 +24,6 @@ Route::middleware(['auth'])->group(function() {
         'categories' => 'CategoriesController',
         'questions' => 'QuestionsController',
     ]);
-
-    // questions
-    Route::get('questions', 'QuestionsController@index');
-    Route::get('questions/add', 'QuestionsController@create');
-    Route::get('questions/{id}/edit', 'QuestionsController@edit');
     // Users
     // Route::get('questions', 'QuestionsController@index');
     // Route::get('questions/add', 'QuestionsController@create');

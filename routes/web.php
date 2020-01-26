@@ -24,8 +24,4 @@ Route::middleware(['auth'])->group(function() {
         'categories' => 'CategoriesController',
         'questions' => 'QuestionsController',
     ]);
-    // Users
-    // Route::get('questions', 'QuestionsController@index');
-    // Route::get('questions/add', 'QuestionsController@create');
-    // Route::get('questions/{id}/edit', 'QuestionsController@edit');
 });

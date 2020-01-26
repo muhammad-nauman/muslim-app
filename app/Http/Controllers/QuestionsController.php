@@ -17,7 +17,7 @@ class QuestionsController extends Controller
     public function index()
     {
         $questions = Question::withCount('answers')->get();
-        return view('categories');
+        return view('questions.index', ['questions' => $questions]);
     }
 
     /**
@@ -48,7 +48,7 @@ class QuestionsController extends Controller
             'correct' => 'required|min:0|max:3',
         ]);
 
-        if(! isset(request('answers')[request('correct')])) {
+        if(! isset(request('answers')[request('correct')]) && is_null(request('answers')[request('correct')]['answer'])) {
             return redirect()->back()->with('message', 'Please select correct answer');
         }
 

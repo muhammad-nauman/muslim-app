@@ -73,7 +73,10 @@ class QuestionsController extends Controller
      */
     public function show($id)
     {
-        //
+        $question = Question::findOrFail($id);
+        $question->load('answers');
+
+        return view('questions.edit', ['question' => $question]);
     }
 
     /**
@@ -107,6 +110,9 @@ class QuestionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $question = Question::findOrFail($id);
+        $question->delete();
+
+        return redirect()->route('questions.index');
     }
 }

@@ -17,10 +17,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resources(
+Route::apiResources(
     [
         'questions' => 'Api\QuestionsController',
-        'contents' => 'Api\QuestionsController',
-        'devices' => 'Api\QuestionsController',
+        'contents' => 'Api\ContentController',
+        'devices' => 'Api\DevicesController',
+        'categories' => 'Api\CategoriesController',
     ]
 );

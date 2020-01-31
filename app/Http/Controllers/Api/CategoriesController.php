@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Question;
+use App\Category;
 
-class QuestionsController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,22 +15,12 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        $this->validate(
-            request(), [
-                'category_id' => 'required|exists:categories,id',
-            ]
-        );
-        $questions = Question::where('category_id', request('category_id'))
-            ->with('answers')
-            ->withCount('answers')
-            ->get();
+        $categories = Category::where('is_active', 1)->get();
 
-        return response()->json(
-            [
-            'success' => true,
-            'data' => $questions,
-            ]
-        );
+        return response()->json([
+            'status' => true,
+            'data' => $categories,
+        ]);
     }
 
     /**

@@ -17,16 +17,16 @@ class ContentController extends Controller
     {
         $this->validate(
             request(), [
-                'category_id' => 'required|exists:categories',
+                'category_id' => 'required|exists:categories,id',
             ]
         );
-        $questions = Content::where('category_id', request('category_id'))
-            ->get();
+        $content = Content::where('category_id', request('category_id'))
+            ->get()->groupBy('type');
 
         return response()->json(
             [
             'success' => true,
-            'data' => $questiions,
+            'data' => $content,
             ]
         );
     }

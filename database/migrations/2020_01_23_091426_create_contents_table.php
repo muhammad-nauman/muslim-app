@@ -18,7 +18,8 @@ class CreateContentsTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->string('title')->nullable();
             $table->string('type')->nullable()->comment('It can be either text type or audio type');
-            $table->string('content')->nullable();
+            $table->longText('content')->nullable();
+            $table->tinyInteger('is_active')->default(1)->comment('1 => active');
             $table->timestamps();
             $table->softDeletes();
         });

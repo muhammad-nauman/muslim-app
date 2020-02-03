@@ -16,11 +16,12 @@ class CreateDevicesTable extends Migration
         Schema::create('devices', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('udid')->index();
-            $table->string('fcm_id');
+            $table->string('device_type')->nullable();
+            $table->string('fcm_id')->nullable();
             $table->string('is_active')->default(1);
-            $table->timestamp('last_login')->nullable();
+            $table->timestamp('last_active_session')->nullable();
             $table->timestamps();
-            $table->softDelete();
+            $table->softDeletes();
         });
     }
 

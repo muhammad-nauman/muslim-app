@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Device;
 
 class DevicesController extends Controller
 {
@@ -27,12 +28,12 @@ class DevicesController extends Controller
     {
         $this->validate(
             $request, [
-            'device_id' => 'required',
+            'udid' => 'required',
             ]
         );
 
-        $device = Device::where('device_id', request('device_id'))->first();
-        $last_active_session = null;
+        $device = Device::where('udid', request('udid'))->first();
+        $last_active_session = now();
 
         if (isset($device->id)) {
             $last_active_session = now();

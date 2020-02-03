@@ -20,7 +20,7 @@ class CreateDevicesTable extends Migration
             $table->string('is_active')->default(1);
             $table->timestamp('last_login')->nullable();
             $table->timestamps();
-            $table->softDelete();
+            $table->softDeletes();
         });
     }
 

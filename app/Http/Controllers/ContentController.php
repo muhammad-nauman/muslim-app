@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Content;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class ContentController extends Controller
      */
     public function index()
     {
-        return view('content.index');
+        $contents = Content::get();
+        
+        return view('content.index', ['contents' => $contents]);
     }
 
     /**
@@ -24,7 +27,8 @@ class ContentController extends Controller
      */
     public function create()
     {
-        return view();
+        $categories = Category::where('is_active', 1)->get();
+        return view('content.create', ['categories' => $categories]);
     }
 
     /**
@@ -35,7 +39,15 @@ class ContentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'category_id' => 'required|exists:categories,id',
+            'title' => 'required|min:3|max:200',
+            'content' => 'sometimes|min:3|max:2000',
+            'type' => 'required|in:audio,article',
+            'file' => 'sometimes',
+        ]);
+
+
     }
 
     /**

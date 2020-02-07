@@ -24,5 +24,6 @@ Route::middleware(['auth'])->group(function() {
         'categories' => 'CategoriesController',
         'questions' => 'QuestionsController',
         'users' => 'UsersController',
+        'contents' => 'ContentController',
     ]);
 });

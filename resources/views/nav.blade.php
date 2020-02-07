@@ -35,8 +35,8 @@
             <li>
                 <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">Content Management</span><span class="fa arrow"></a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="graph_flot.html"><i class="fa fa-list"></i>Content History</a></li>
-                    <li><a href="graph_morris.html"><i class="fa fa-plus-circle"></i>Add New</a></li>
+                    <li><a href="{{ route('contents.index') }}"><i class="fa fa-list"></i>Content History</a></li>
+                    <li><a href="{{ route('contents.create') }}"><i class="fa fa-plus-circle"></i>Add New</a></li>
                 </ul>
             </li>
             <li>

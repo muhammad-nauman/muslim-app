@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -14,7 +15,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::get();
+        return view('users.index', ['users' => $users]);
     }
 
     /**
@@ -24,7 +26,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -35,7 +37,17 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|max:200',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:3|max:25|confirmed',
+        ]);
+
+        $password = Hash::make($request->password);
+
+        $user = User::create($request->merge(['password' => $password])->all());
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -57,7 +69,7 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
@@ -69,7 +81,15 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|max:200',
+            'email' => 'required|email|unique:users,email,' .$user->id,
+            'password' => 'sometimes|confirmed',
+        ]);
+
+        $user->update(array_filter($request->except('_token', '_method')));
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -80,6 +100,8 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()->back();
     }
 }

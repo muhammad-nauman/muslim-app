@@ -23,5 +23,6 @@ Route::middleware(['auth'])->group(function() {
     Route::resources([
         'categories' => 'CategoriesController',
         'questions' => 'QuestionsController',
+        'users' => 'UsersController',
     ]);
 });

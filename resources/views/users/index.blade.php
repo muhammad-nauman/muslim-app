@@ -3,42 +3,40 @@
 @section('title') Categories @endsection
 
 @section('css')
-<link href="css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+<link href="{{ url('css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
+<link href="{{ url('css/plugins/sweetalert/sweetalert.css')  }}" rel="stylesheet">
 @endsection
 
 @section('content')
 
 <div class="row">
-    <a href="{{ route('questions.create') }}" class="btn btn-success btn-lg">Add New Question</a>
-    <h1>All Questions</h1>
+    <a href="{{ route('users.create') }}" class="btn btn-success btn-lg">Add New User</a>
+    <h1>All Users</h1>
     <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" role="grid">
             <thead>
                 <tr role="row">
                     <th>ID</th>
-                    <th>Question</th>
-                    <th>Is Active?</th>
-                    <th>Number of Options</th>
+                    <th>Name</th>
+                    <th>Email</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($questions as $question)
+                @foreach($users as $user)
                 <tr class="gradeA">
-                    <td>{{ $question->id }}</td>
-                    <td>{{ $question->question }}</td>
-                    <td>{{ $question->is_active === 1 ? 'Yes' : 'No' }}</td>
-                    <td>{{ $question->answers_count }}</td>
+                    <td>{{ $user->id }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
                     <td class="center">
-                        <a href="{{ route('questions.show', [ 'question' => $question->id ]) }}" class="btn btn-primary dim" >
+                        <a href="{{ route('users.edit', [ 'user' => $user->id ]) }}" class="btn btn-primary dim" >
                             <i class="fa fa-edit"></i>
                         </a>
-                        
-                        <form id="delete_form" action="{{ route('questions.destroy', [ 'question' => $question->id ]) }}" method="POST" style="display: none;">
+                        <form id="{{ 'delete_form_' . $user->id }}" action=" {{ route('users.destroy', [ 'user' => $user->id ])   }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                         </form>
-                        <a class="btn btn-danger dim" onclick="event.preventDefault(); document.getElementById('delete_form').submit();">
+                        <a class="btn btn-danger dim" onclick="event.preventDefault(); onDelete(document.getElementById(`{{ 'delete_form_' . $user->id }}`));">
                             <i class="fa fa-trash"></i>
                         </a>
                     </td>
@@ -65,6 +63,8 @@
 <!-- Custom and plugin javascript -->
 <script src="js/inspinia.js"></script>
 <script src="js/plugins/pace/pace.min.js"></script>
+<script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="js/custom.js"></script>
 
 @endsection
 

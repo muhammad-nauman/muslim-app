@@ -6,13 +6,14 @@
                         <img alt="image" class="img-circle" src="{{ url('/img/profile_small.jpg') }}" />
                     </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
-                            </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
+                        <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ auth()->user()->name }}</strong>
+                            </span> <span class="text-muted text-xs block">{{ auth()->user()->email }}<b class="caret"></b></span> </span> </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a href="">Profile</a></li>
-                        <li class="divider"></li>
-                        <li><a href="">Logout</a></li>
+                        <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
                     </ul>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
                 </div>
                 <div class="logo-element">
                     IN+
@@ -41,8 +42,8 @@
             <li>
                 <a href="#"><i class="fa fa-users"></i> <span class="nav-label">Users Management</span><span class="fa arrow"></a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="graph_flot.html"><i class="fa fa-list"></i>All Users</a></li>
-                    <li><a href="graph_morris.html"><i class="fa fa-plus-circle"></i>Add New</a></li>
+                    <li><a href="{{ route('users.index') }}"><i class="fa fa-list"></i>All Users</a></li>
+                    <li><a href="{{ route('users.create') }}"><i class="fa fa-plus-circle"></i>Add New</a></li>
                 </ul>
             </li>
         </ul>

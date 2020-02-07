@@ -4,6 +4,7 @@
 
 @section('css')
 <link href="css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+<link href="{{ url('css/plugins/sweetalert/sweetalert.css')  }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -31,15 +32,13 @@
                         <a href="{{ route('categories.show', [ 'category' => $category->id ]) }}" class="btn btn-primary dim" >
                             <i class="fa fa-edit"></i>
                         </a>
-                        <form class="no-margin" method="POST" action="{{ route('categories.show', [ 'category' => $category->id ]) }}">
+                        <form id="{{ 'delete_form_' . $category->id }}" action="{{ route('categories.destroy', [ 'category' => $category->id ]) }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                            <!-- <div class="form-group"> -->
-                                <button class="btn btn-danger dim no-margin" style="float: left;">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            <!-- </div> -->
                         </form>
+                        <a class="btn btn-danger dim" onclick="event.preventDefault(); onDelete(document.getElementById(`{{ 'delete_form_' . $category->id }}`))">
+                            <i class="fa fa-trash"></i>
+                        </a>
                     </td>
                 </tr>
                 @endforeach
@@ -64,6 +63,9 @@
 <!-- Custom and plugin javascript -->
 <script src="js/inspinia.js"></script>
 <script src="js/plugins/pace/pace.min.js"></script>
+<script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="js/custom.js"></script>
 
 @endsection
 

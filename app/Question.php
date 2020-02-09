@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Answer;
-use App\Category;
+use App\Quiz;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Question extends Model
@@ -18,8 +18,8 @@ class Question extends Model
         return $this->hasMany(Answer::class);
     }
 
-    public function category()
+    public function quiz()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Quiz::class);
     }
 }

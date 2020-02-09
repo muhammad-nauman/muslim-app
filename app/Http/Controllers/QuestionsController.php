@@ -68,7 +68,7 @@ class QuestionsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Question  $question
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -79,7 +79,7 @@ class QuestionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Question  $question
      * @return \Illuminate\Http\Response
      */
     public function edit(Question $question)
@@ -97,7 +97,7 @@ class QuestionsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Question  $question
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Question $question)
@@ -108,7 +108,6 @@ class QuestionsController extends Controller
             'answers' => 'required|array|between:2,4',
             'correct' => 'required|min:0|max:3',
         ]);
-        // dd($request->all());
 
         if(! isset(request('answers')[request('correct')]) && is_null(request('answers')[request('correct')]['answer'])) {
             return redirect()->back()->with('message', 'Please select correct answer');
@@ -134,7 +133,7 @@ class QuestionsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Question  $question
      * @return \Illuminate\Http\Response
      */
     public function destroy(Question $question)

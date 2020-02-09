@@ -14,29 +14,37 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker =  Faker::create();
-        // dd($faker);
-        factory(Category::class, 10)->create()->each(function($category) use ($faker){
-            $category->content()->save(new Content([
-                'type' => 'audio',
-                'title' => $faker->sentence,
-                'content' => 'https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3'
-            ]));
-            $category->content()->save(new Content([
-                'type' => 'audio',
-                'title' => $faker->sentence,
-                'content' => 'https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3'
-            ]));
-            $category->content()->save(new Content([
-                'type' => 'article',
-                'title' => $faker->sentence,
-                'content' => $faker->paragraph
-            ]));
-            $category->content()->save(new Content([
-                'type' => 'article',
-                'title' => $faker->sentence,
-                'content' => $faker->paragraph
-            ]));
-        });
+        Category::insert([
+            [
+                'name' => 'Allah ( جل جلاله )',
+                'is_active' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Muhammad (صلى الله عليه وسلم)',
+                'is_active' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Mecca (The Kaaba)',
+                'is_active' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Pray (Dua)',
+                'is_active' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Mosque (Masjid)',
+                'is_active' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
     }
 }

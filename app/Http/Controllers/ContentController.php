@@ -39,15 +39,35 @@ class ContentController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validated = $this->validate($request, [
             'category_id' => 'required|exists:categories,id',
             'title' => 'required|min:3|max:200',
-            'content' => 'sometimes|min:3|max:2000',
             'type' => 'required|in:audio,article',
-            'file' => 'sometimes',
+            'content' => 'required_if:type,article|min:3|max:2000',
+            'file' => 'required_if:type,audio|mimes:mpga,wav',
         ]);
 
+        
+        if($request->input('type') === 'article' && $request->input('content') === '<p><br></p>') {
+            return redirect()->back()->with('error', 'Please write full content');
+        }
+        
+        $content = new Content($request->only('category_id', 'title', 'type'));
 
+        if($request->input('type') === 'audio') {
+            $fileName = $request->input('title') . '.' . $request->file->extension();
+            $path = $request->file->storeAs('public/audios', $fileName);
+            $content->content = $path;
+
+            $content->save();
+            return redirect()->route('contents.index');
+        }
+
+        $content->content = $request->input('content');
+
+        $content->save();
+
+        return redirect()->route('contents.index');
     }
 
     /**
@@ -92,6 +112,8 @@ class ContentController extends Controller
      */
     public function destroy(Content $content)
     {
-        //
+        $content->delete();
+
+        return redirect()->back();
     }
 }

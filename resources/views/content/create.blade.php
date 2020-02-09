@@ -22,10 +22,10 @@
                 <select class="form-control m-b required" name="category_id">
                     <option value="">Select Category</option>
                     @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    <option value="{{ $category->id }}" @if( old('category_id') == $category->id) selected @endif >{{ $category->name }}</option>
                     @endforeach
                 </select>
-                @error('title')
+                @error('category_id')
                 <span class="help-block text-red m-b-none">{{ $message }}</span>
                 @enderror
             </div>
@@ -42,21 +42,24 @@
             <div class="col-lg-7">
                 <select class="form-control" id="content_type" name="type">
                     <option value="">Select Content Type</option>
-                    <option value="audio">Audio</option>
-                    <option value="article">Article</option>
+                    <option value="audio" @if(old('type') === 'audio') selected @endif>Audio</option>
+                    <option value="article" @if(old('type') === 'article') selected @endif>Article</option>
                 </select>
                 @error('type')
                 <span class="help-block text-red m-b-none">{{ $message }}</span>
                 @enderror
             </div>
         </div>
-        <div class="form-group @error('type') has-error @enderror pace-inactive audio"><label class="col-lg-2 control-label">Audio File</label>
+        <div class="form-group @error('file') has-error @enderror pace-inactive audio"><label class="col-lg-2 control-label">Audio File</label>
             <div class="col-lg-7">
                 <input type="file" name="file">
+                @error('file')
+                <span class="help-block text-red m-b-none">{{ $message }}</span>
+                @enderror
             </div>
         </div>
         
-        <div class="form-group @error('type') has-error @enderror pace-inactive article"><label class="col-lg-2 control-label">Article Content</label>
+        <div class="form-group @error('content') has-error @enderror pace-inactive article"><label class="col-lg-2 control-label">Article Content</label>
             <div class="col-lg-7">
                 <textarea id="summernote" name="content"></textarea>
             </div>
@@ -94,25 +97,29 @@
 @section('script_code')
 
 <script>
+    function checkSelectedTypeOption() {
+        const selected = $('#content_type option:selected').val()
+        if(selected === 'audio') {
+            $('div.audio').removeClass('pace-inactive')
+            $('div.article').addClass('pace-inactive')
+        }
+        if(selected === 'article') {
+            $('div.audio').addClass('pace-inactive')
+            $('div.article').removeClass('pace-inactive')
+        }
+        if(selected === '') {
+            $('div.audio').addClass('pace-inactive')
+            $('div.article').addClass('pace-inactive')
+        }
+    }
     $(document).ready(function() {
         $('#summernote').summernote({
             placeholder: 'Write Article Content here',
         });
 
+        checkSelectedTypeOption();
         $(document).on('change', '#content_type', function() {
-            const selected = $('#content_type option:selected').val()
-            if(selected === 'audio') {
-                $('div.audio').removeClass('pace-inactive')
-                $('div.article').addClass('pace-inactive')
-            }
-            if(selected === 'article') {
-                $('div.audio').addClass('pace-inactive')
-                $('div.article').removeClass('pace-inactive')
-            }
-            if(selected === '') {
-                $('div.audio').addClass('pace-inactive')
-                $('div.article').addClass('pace-inactive')
-            }
+            checkSelectedTypeOption();
         });
     });
 </script>

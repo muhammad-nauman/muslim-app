@@ -10,7 +10,7 @@
 @section('content')
 
 <div class="row">
-    <a href="{{ route('users.create') }}" class="btn btn-success btn-lg">Add New Content</a>
+    <a href="{{ route('contents.create') }}" class="btn btn-success btn-lg">Add New Content</a>
     <h1>All Content</h1>
     <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" role="grid">
@@ -26,8 +26,8 @@
                 @foreach($contents as $content)
                 <tr class="gradeA">
                     <td>{{ $content->id }}</td>
-                    <td>{{ $content->name }}</td>
-                    <td>{{ $content->email }}</td>
+                    <td>{{ $content->title }}</td>
+                    <td>{{ $content->type }}</td>
                     <td class="center">
                         <a href="{{ route('contents.edit', [ 'content' => $content->id ]) }}" class="btn btn-primary dim" >
                             <i class="fa fa-edit"></i>

@@ -73,10 +73,7 @@ class QuestionsController extends Controller
      */
     public function show($id)
     {
-        $question = Question::findOrFail($id);
-        $question->load('answers');
 
-        return view('questions.edit', ['question' => $question]);
     }
 
     /**
@@ -85,9 +82,15 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Question $question)
     {
-        //
+        $categories = Category::where('is_active', 1)->get();
+        $question->load('answers');
+
+        return view('questions.edit', [
+            'question' => $question,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -97,9 +100,35 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Question $question)
     {
-        //
+        $this->validate($request, [
+            'category_id' => 'required|exists:categories,id',
+            'question' => 'required|unique:questions,question,'. $question->id,
+            'answers' => 'required|array|between:2,4',
+            'correct' => 'required|min:0|max:3',
+        ]);
+        // dd($request->all());
+
+        if(! isset(request('answers')[request('correct')]) && is_null(request('answers')[request('correct')]['answer'])) {
+            return redirect()->back()->with('message', 'Please select correct answer');
+        }
+
+        $activeStatus = [
+            'is_active' => $request->has('is_active') ? 1 : 0,
+        ];
+
+        $question->update(array_merge($request->only('category_id', 'question'), $activeStatus));
+        $answers = $request->answers;
+        $answers[request('correct')] = array_merge($answers[request('correct')], ['is_right' => true]);
+
+        collect($answers)->filter(function($answer) {
+            return ! is_null($answer['answer']);
+        })->map(function($answer) {
+            Answer::findOrFail($answer['answer_id'])->update(collect($answer)->except('answer_id')->toArray());
+        });
+
+        return redirect()->route('questions.index');
     }
 
     /**
@@ -108,9 +137,8 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Question $question)
     {
-        $question = Question::findOrFail($id);
         $question->delete();
 
         return redirect()->route('questions.index');

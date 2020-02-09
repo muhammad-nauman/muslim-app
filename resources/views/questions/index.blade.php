@@ -30,7 +30,7 @@
                     <td>{{ $question->is_active === 1 ? 'Yes' : 'No' }}</td>
                     <td>{{ $question->answers_count }}</td>
                     <td class="center">
-                        <a href="{{ route('questions.show', [ 'question' => $question->id ]) }}" class="btn btn-primary dim" >
+                        <a href="{{ route('questions.edit', [ 'question' => $question->id ]) }}" class="btn btn-primary dim" >
                             <i class="fa fa-edit"></i>
                         </a>
                         

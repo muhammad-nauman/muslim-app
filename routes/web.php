@@ -18,7 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware(['auth'])->group(function() {
-    Route::get('dashboard', 'DashboardController@index');
+    Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
     Route::resources([
         'categories' => 'CategoriesController',

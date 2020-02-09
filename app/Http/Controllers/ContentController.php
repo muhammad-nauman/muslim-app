@@ -15,7 +15,9 @@ class ContentController extends Controller
      */
     public function index()
     {
-        $contents = Content::get();
+        $contents = Content::whereHas('category', function($query) {
+            return $query->where('is_active', 1);
+        })->get();
         
         return view('content.index', ['contents' => $contents]);
     }

@@ -3,7 +3,7 @@
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element"> <span>
-                        <img alt="image" class="img-circle" src="{{ url('/img/profile_small.jpg') }}" />
+                        <img alt="image" class="img-circle" src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&name={{ auth()->user()->name }}" />
                     </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ auth()->user()->name }}</strong>
@@ -20,7 +20,7 @@
                 </div>
             </li>
             <li>
-                <a href="layouts.html"><i class="fa fa-area-chart"></i> <span class="nav-label">Dashboard</span></a>
+                <a href="{{ route('dashboard') }}"><i class="fa fa-area-chart"></i> <span class="nav-label">Dashboard</span></a>
             </li>
             <li>
                 <a href="{{ route('categories.index') }}"><i class="fa fa-clock-o"></i> <span class="nav-label">Categories</span></a>

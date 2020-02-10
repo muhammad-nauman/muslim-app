@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Quiz;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
@@ -13,7 +14,11 @@ class QuizController extends Controller
      */
     public function index()
     {
-        //
+        $quizzes = Quiz::withCount('questions')->get();
+        return view('quizzes.index', [
+            'quizzes' => $quizzes,
+        ]);
+
     }
 
     /**
@@ -23,7 +28,7 @@ class QuizController extends Controller
      */
     public function create()
     {
-        //
+        return view('quizzes.create');
     }
 
     /**
@@ -34,7 +39,15 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'category_id' => 'required|exists:categories,id',
+            'name' => 'required|unique:quizzes|max:100',
+            'no_of_questions' => 'required|integer|max:50'
+        ]);
+
+        $quiz = Quiz::create($request->all());
+
+        return redirect()->route('quizzes.questions.create', ['quiz' => $quiz->id]);
     }
 
     /**
@@ -74,11 +87,13 @@ class QuizController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Quiz  $quiz
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Quiz $quiz)
     {
-        //
+        $quiz->delete();
+
+        return redirect()->back();
     }
 }

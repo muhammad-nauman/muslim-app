@@ -22,7 +22,8 @@ Route::middleware(['auth'])->group(function() {
 
     Route::resources([
         'categories' => 'CategoriesController',
-        'questions' => 'QuestionsController',
+        'quizzes' => 'QuizController',
+        'quizzes.questions' => 'QuestionsController',
         'users' => 'UsersController',
         'contents' => 'ContentController',
     ]);

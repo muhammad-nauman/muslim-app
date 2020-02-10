@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Question;
 use App\Category;
 use App\Answer;
+use App\Quiz;
 
 class QuestionsController extends Controller
 {
@@ -14,10 +15,10 @@ class QuestionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Quiz $quiz)
     {
-        $questions = Question::withCount('answers')->get();
-        return view('questions.index', ['questions' => $questions]);
+        $questions = $quiz->questions()->withCount('answers')->get();
+        return view('questions.index', ['questions' => $questions, 'quiz' => $quiz]);
     }
 
     /**
@@ -25,11 +26,11 @@ class QuestionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Quiz $quiz)
     {
-        $categories = Category::where('is_active', 1)->get();
         return view('questions.create', [
-            'categories' => $categories
+            'quiz' => $quiz,
+            'questions' => $quiz->questions
         ]);
     }
 
@@ -37,12 +38,12 @@ class QuestionsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  Quiz  $quiz
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Quiz $quiz)
     {
         $this->validate($request, [
-            'category_id' => 'required|exists:categories,id',
             'question' => 'required|unique:questions',
             'answers' => 'required|array|between:2,4',
             'correct' => 'required|min:0|max:3',
@@ -52,7 +53,8 @@ class QuestionsController extends Controller
             return redirect()->back()->with('message', 'Please select correct answer');
         }
 
-        $question = Question::create($request->only('category_id', 'question'));
+        $question = new Question($request->only( 'question'));
+        $quiz->questions()->save($question);
         $answers = $request->answers;
         $answers[request('correct')] = array_merge($answers[request('correct')], ['is_right' => true]);
 
@@ -62,7 +64,7 @@ class QuestionsController extends Controller
             $question->answers()->save(new Answer($answer));
         });
 
-        return redirect()->route('questions.index');
+        return redirect()->back();
     }
 
     /**
@@ -100,10 +102,9 @@ class QuestionsController extends Controller
      * @param  Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(Request $request, Quiz $quiz, Question $question)
     {
         $this->validate($request, [
-            'category_id' => 'required|exists:categories,id',
             'question' => 'required|unique:questions,question,'. $question->id,
             'answers' => 'required|array|between:2,4',
             'correct' => 'required|min:0|max:3',
@@ -113,11 +114,7 @@ class QuestionsController extends Controller
             return redirect()->back()->with('message', 'Please select correct answer');
         }
 
-        $activeStatus = [
-            'is_active' => $request->has('is_active') ? 1 : 0,
-        ];
-
-        $question->update(array_merge($request->only('category_id', 'question'), $activeStatus));
+        $question->update($request->only('question'));
         $answers = $request->answers;
         $answers[request('correct')] = array_merge($answers[request('correct')], ['is_right' => true]);
 
@@ -127,7 +124,7 @@ class QuestionsController extends Controller
             Answer::findOrFail($answer['answer_id'])->update(collect($answer)->except('answer_id')->toArray());
         });
 
-        return redirect()->route('questions.index');
+        return redirect()->back();
     }
 
     /**

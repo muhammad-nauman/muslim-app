@@ -28,8 +28,8 @@
             <li>
                 <a href="#"><i class="fa fa-question-circle"></i> <span class="nav-label">Quiz Management</span><span class="fa arrow"></a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="{{ route('questions.index') }}"><i class="fa fa-list"></i>All Questions</a></li>
-                    <li><a href="{{ route('questions.create') }}"><i class="fa fa-plus-circle"></i>Add New</a></li>
+                    <li><a href="{{ route('quizzes.index') }}"><i class="fa fa-list"></i>All Quizzes</a></li>
+                    <li><a href="{{ route('quizzes.create') }}"><i class="fa fa-plus-circle"></i>Add New</a></li>
                 </ul>
             </li>
             <li>

@@ -3,13 +3,13 @@
 @section('title') Categories @endsection
 
 @section('css')
-<link href="css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+<link href="{{ url('css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
 
 <div class="row">
-    <a href="{{ route('questions.create') }}" class="btn btn-success btn-lg">Add New Question</a>
+    <a href="{{ route('quizzes.index') }}" class="btn btn-success btn-lg">All Quizzes</a>
     <h1>All Questions</h1>
     <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" role="grid">
@@ -30,11 +30,11 @@
                     <td>{{ $question->is_active === 1 ? 'Yes' : 'No' }}</td>
                     <td>{{ $question->answers_count }}</td>
                     <td class="center">
-                        <a href="{{ route('questions.edit', [ 'question' => $question->id ]) }}" class="btn btn-primary dim" >
+                        <a href="{{ route('quizzes.questions.create', [ 'quiz' => $quiz->id ]) }}" class="btn btn-primary dim" >
                             <i class="fa fa-edit"></i>
                         </a>
                         
-                        <form id="delete_form" action="{{ route('questions.destroy', [ 'question' => $question->id ]) }}" method="POST" style="display: none;">
+                        <form id="delete_form" action="{{ route('quizzes.questions.destroy', [ 'quiz' => $quiz->id, 'question' => $question->id ]) }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                         </form>
@@ -54,17 +54,17 @@
 @section('script_files')
 
 <!-- Mainly scripts -->
-<script src="js/jquery-2.1.1.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-<script src="js/plugins/jeditable/jquery.jeditable.js"></script>
+<script src="{{ url('/js/jquery-2.1.1.js') }}"></script>
+<script src="{{ url('/js/bootstrap.min.js') }}"></script>
+<script src="{{ url('/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+<script src="{{ url('/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+<script src="{{ url('/js/plugins/jeditable/jquery.jeditable.js') }}"></script>
 
-<script src="js/plugins/dataTables/datatables.min.js"></script>
+<script src="{{ url('/js/plugins/dataTables/datatables.min.js') }}"></script>
 
 <!-- Custom and plugin javascript -->
-<script src="js/inspinia.js"></script>
-<script src="js/plugins/pace/pace.min.js"></script>
+<script src="{{ url('/js/inspinia.js') }}"></script>
+<script src="{{ url('/js/plugins/pace/pace.min.js') }}"></script>
 
 @endsection
 

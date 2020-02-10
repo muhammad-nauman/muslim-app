@@ -91,7 +91,12 @@ class ContentController extends Controller
      */
     public function edit(Content $content)
     {
-        //
+        $categories = Category::where('is_active', 1)->get();
+
+        return view('content.edit', [
+            'categories' => $categories,
+            'content' => $content,
+        ]);
     }
 
     /**

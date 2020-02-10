@@ -1,52 +1,71 @@
 @extends('layouts.app')
 
-@section('title') Add User @endsection
+@section('title') Update Content @endsection
 @section('css')
 <link href="{{ url('/css/plugins/iCheck/custom.css') }}" rel="stylesheet">
 <link href="{{ url('/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}" rel="stylesheet">
+<link href="{{ url('/css/plugins/summernote/summernote.css') }}" rel="stylesheet">
+<link href="{{ url('/css/plugins/summernote/summernote-bs3.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
 
 <div class="row">
     <div class="col-md-12">
-    <a href="{{ route('users.index') }}" class="btn btn-success btn-lg">All Users</a>
-    <h1>New User</h1>
-    <small>Newly created user will have the admin rights and will have access to all the modules.</small>
-    <form class="form-horizontal" method="POST" action="{{ route('users.store') }}">
+    <a href="{{ route('contents.index') }}" class="btn btn-success btn-lg">Content History</a>
+    <h1>Update Content</h1>
+    <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{ route('contents.update', ['content' => $content->id]) }}">
+        
         {{ csrf_field() }}
-        <div class="form-group @error('name') has-error @enderror"><label class="col-lg-2 control-label">Name</label>
+        {{ method_field('PUT') }}
+        <div class="form-group @error('category_id') has-error @enderror"><label class="col-lg-2 control-label">Category</label>
             <div class="col-lg-7">
-                <input type="text" name="name" placeholder="Name" class="form-control" value="{{ old('name') }}">
-                @error('name')
+                <select class="form-control m-b required" name="category_id">
+                    <option value="">Select Category</option>
+                    @foreach($categories as $category)
+                    <option value="{{ $category->id }}" @if( $category->id == $content->category_id) selected @endif >{{ $category->name }}</option>
+                    @endforeach
+                </select>
+                @error('category_id')
                 <span class="help-block text-red m-b-none">{{ $message }}</span>
                 @enderror
             </div>
         </div>
-        <div class="form-group @error('email') has-error @enderror"><label class="col-lg-2 control-label">Email</label>
+        <div class="form-group @error('title') has-error @enderror"><label class="col-lg-2 control-label">Title</label>
             <div class="col-lg-7">
-                <input type="email" name="email" placeholder="Email" class="form-control" value="{{ old('email') }}">
-                @error('email')
+                <input type="text" name="title" placeholder="Title" class="form-control" value="{{ $content->title }}">
+                @error('title')
                 <span class="help-block text-red m-b-none">{{ $message }}</span>
                 @enderror
             </div>
         </div>
-        <div class="form-group @error('password') has-error @enderror"><label class="col-lg-2 control-label">Password</label>
+        <div class="form-group @error('type') has-error @enderror"><label class="col-lg-2 control-label">Type</label>
             <div class="col-lg-7">
-                <input type="password" name="password" placeholder="Password" class="form-control">
-                @error('password')
+                <select class="form-control" id="content_type" name="type">
+                    <option value="">Select Content Type</option>
+                    <option value="audio" @if($content->type === 'audio') selected @endif>Audio</option>
+                    <option value="article" @if($content->type === 'article') selected @endif>Article</option>
+                </select>
+                @error('type')
                 <span class="help-block text-red m-b-none">{{ $message }}</span>
                 @enderror
             </div>
         </div>
-        <div class="form-group @error('password_confirmation') has-error @enderror"><label class="col-lg-2 control-label">Confirm Password</label>
+        <div class="form-group @error('file') has-error @enderror pace-inactive audio"><label class="col-lg-2 control-label">Audio File</label>
             <div class="col-lg-7">
-                <input type="password" name="password_confirmation" placeholder="Confirm Password" class="form-control">
-                @error('password_confirmation')
+                <input type="file" name="file">
+                @error('file')
                 <span class="help-block text-red m-b-none">{{ $message }}</span>
                 @enderror
             </div>
         </div>
+        
+        <div class="form-group @error('content') has-error @enderror pace-inactive article"><label class="col-lg-2 control-label">Article Content</label>
+            <div class="col-lg-7">
+                <textarea id="summernote" name="content">@if($content->type === 'article') {!! $content->content !!} @endif</textarea>
+            </div>
+        </div>
+        
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
                 <button class="btn btn-primary" type="submit">Create</button>
@@ -72,16 +91,36 @@
 
 <!-- iCheck -->
 <script src="{{ url('/js/plugins/iCheck/icheck.min.js') }}"></script>
+<script src="{{ url('/js/plugins/summernote/summernote.min.js') }}"></script>
 
 @endsection
 
 @section('script_code')
 
 <script>
+    function checkSelectedTypeOption() {
+        const selected = $('#content_type option:selected').val()
+        if(selected === 'audio') {
+            $('div.audio').removeClass('pace-inactive')
+            $('div.article').addClass('pace-inactive')
+        }
+        if(selected === 'article') {
+            $('div.audio').addClass('pace-inactive')
+            $('div.article').removeClass('pace-inactive')
+        }
+        if(selected === '') {
+            $('div.audio').addClass('pace-inactive')
+            $('div.article').addClass('pace-inactive')
+        }
+    }
     $(document).ready(function() {
-        $('.i-checks').iCheck({
-            checkboxClass: 'icheckbox_square-green',
-            radioClass: 'iradio_square-green',
+        $('#summernote').summernote({
+            placeholder: 'Write Article Content here',
+        });
+
+        checkSelectedTypeOption();
+        $(document).on('change', '#content_type', function() {
+            checkSelectedTypeOption();
         });
     });
 </script>

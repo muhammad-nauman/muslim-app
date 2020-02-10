@@ -12,7 +12,7 @@
 
 <div class="row">
     <div class="col-md-12">
-    <a href="{{ route('contents.index') }}" class="btn btn-success btn-lg">Content History</a>
+    <a href="{{ route('contents.index') }}" class="btn btn-primary">Content History</a>
     <h1>Update Content</h1>
     <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{ route('contents.update', ['content' => $content->id]) }}">
         

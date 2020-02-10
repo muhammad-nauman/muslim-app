@@ -12,7 +12,7 @@
 
 <div class="row">
     <div class="col-md-12">
-    <a href="{{ route('contents.index') }}" class="btn btn-success btn-lg">All Quizzes</a>
+    <a href="{{ route('contents.index') }}" class="btn btn-primary">All Quizzes</a>
     <h1>New Quiz</h1>
     <form class="form-horizontal" method="POST" action="{{ route('quizzes.store') }}">
         

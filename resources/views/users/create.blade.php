@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="col-md-12">
-    <a href="{{ route('users.index') }}" class="btn btn-success btn-lg">All Users</a>
+    <a href="{{ route('users.index') }}" class="btn btn-primary">All Users</a>
     <h1>New User</h1>
     <small>Newly created user will have the admin rights and will have access to all the modules.</small>
     <form class="form-horizontal" method="POST" action="{{ route('users.store') }}">

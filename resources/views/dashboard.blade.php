@@ -21,12 +21,12 @@
         <div class="ibox float-e-margins">
             <div class="ibox-title">
                 <span class="label label-info pull-right">Active</span>
-                <h5>Questions</h5>
+                <h5>Quizzes</h5>
             </div>
             <div class="ibox-content">
-                <h1 class="no-margins">{{ $questionsCount }}</h1>
+                <h1 class="no-margins">{{ $quizCount }}</h1>
                 <!-- <div class="stat-percent font-bold text-info"></div> -->
-                <small>All Active Questions</small>
+                <small>All Active Quizzes</small>
             </div>
         </div>
     </div>

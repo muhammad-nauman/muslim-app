@@ -10,7 +10,7 @@
 @section('content')
 
 <div class="row">
-    <a href="{{ route('categories.create') }}" class="btn btn-success btn-lg">Add New Category</a>
+    <a href="{{ route('categories.create') }}" class="btn btn-primary">Add New Category</a>
     <h1>All Categories</h1>
     <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" role="grid">

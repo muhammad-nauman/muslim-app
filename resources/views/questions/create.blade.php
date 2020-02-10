@@ -10,6 +10,7 @@
 @endsection
 
 @section('content')
+<a href="{{ route('quizzes.create') }}" class="btn btn-primary">All Quizzes</a>
 @if($questions->count() < $quiz->no_of_questions)
 <div class="row">
     <div class="col-lg-12">

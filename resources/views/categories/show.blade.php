@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="col-md-12">
-    <a href="{{ route('categories.index') }}" class="btn btn-success btn-lg">All Categories</a>
+    <a href="{{ route('categories.index') }}" class="btn btn-primary">All Categories</a>
     <h1>New Category</h1>
     <form class="form-horizontal" method="POST" action="{{ route('categories.update', [ 'category' => $category->id ]) }}">
         {{ csrf_field() }}

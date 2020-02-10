@@ -9,7 +9,7 @@
 @section('content')
 
 <div class="row">
-    <a href="{{ route('quizzes.index') }}" class="btn btn-success btn-lg">All Quizzes</a>
+    <a href="{{ route('quizzes.index') }}" class="btn btn-primary">All Quizzes</a>
     <h1>All Questions</h1>
     <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" role="grid">

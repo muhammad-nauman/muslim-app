@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="col-md-12">
-    <a href="{{ route('users.index') }}" class="btn btn-success btn-lg">All Users</a>
+    <a href="{{ route('users.index') }}" class="btn btn-primary">All Users</a>
     <h1>Update User</h1>
     <form class="form-horizontal" method="POST" action="{{ route('users.update', ['user' => $user->id]) }}">
         {{ csrf_field() }}

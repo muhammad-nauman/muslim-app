@@ -6,6 +6,7 @@ use App\Category;
 use App\Content;
 use App\Device;
 use App\Question;
+use App\Quiz;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class DashboardController extends Controller
     {
         $categoriesCount = Category::count();
         $usersCount = User::count();
-        $questionsCount = Question::where('is_active', 1)->count();
+        $quizCount = Quiz::where('is_active', 1)->count();
         $devicesAndroid = Device::where('device_type', 'android')->count();
         $devicesIos = Device::where('device_type', 'ios')->count();
         $articlesCount = Content::whereHas('category', function($query) {
@@ -29,7 +30,7 @@ class DashboardController extends Controller
         return view('dashboard', [
             'categoriesCount' => $categoriesCount,
             'usersCount' => $usersCount,
-            'questionsCount' => $questionsCount,
+            'quizCount' => $quizCount,
             'devicesAndroid' => $devicesAndroid,
             'devicesIos' => $devicesIos,
             'articlesCount' => $articlesCount,

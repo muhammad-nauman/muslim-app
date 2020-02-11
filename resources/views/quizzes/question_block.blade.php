@@ -12,28 +12,25 @@
                         position: absolute;
                         right: 4%;
                     ">
-                        <button class="btn btn-sm btn-warning edit" type="button" style="display:none;">Edit</button>
+                        <a href="{{ route('quizzes.questions.edit', ['quiz' => $question->quiz_id, 'question' => $question->id]) }}" class="btn btn-sm btn-warning edit" type="button" style="display:none;">Edit</a>
                     </div>
                         <div class="row">
                             <div class="col-lg-8">
                                 <div class="form-group">
                                     <label>Question {{ ++$index }}</label>
-                                    <input value="{{ $question->question }}" id="question" name="question" type="text" class="form-control required">
+                                    <input readonly value="{{ $question->question }}" id="question" name="question" type="text" class="form-control required">
                                 </div>
                             </div>
                         </div>
-                        <div class="alert alert-danger alert-dismissable pace-inactive">
-                            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                            Please select correct answer.
-                        </div>
-                        <small>Please mark the circle with the correct option</small>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>
                                         <div class="i-checks">
                                             <label>
-                                                <input type="radio" value="0" name="correct" data-option="0">
+                                                <input disabled type="radio" value="0" name="correct" data-option="0"
+                                                    @if($question->answers[0]->is_right == 1) checked @endif
+                                                >
                                                 <i>
 
                                                 </i>
@@ -41,20 +38,22 @@
                                         </div>
                                         First Option *
                                     </label>
-                                    <input id="name" name="answers[0][answer]" type="text" class="form-control required">
+                                    <input readonly id="name" name="answers[0][answer]" type="text" class="form-control required">
                                 </div>
                                 <div class="form-group">
                                     <label>
                                         <div class="i-checks">
                                             <label>
-                                                <input type="radio" value="2" name="correct" data-option="1">
+                                                <input disabled type="radio" value="2" name="correct" data-option="1"
+                                                    @if(isset($question->answers[2]) && $question->answers[2]->is_right == 1) checked @endif
+                                                >
                                                 <i>
                                                 </i>
                                             </label>
                                         </div>
                                         Third Option *
                                     </label>
-                                    <input id="surname" name="answers[2][answer]" type="text" class="form-control">
+                                    <input readonly id="surname" name="answers[2][answer]" type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -62,7 +61,9 @@
                                     <label>
                                         <div class="i-checks">
                                             <label>
-                                                <input type="radio" value="1" name="correct" data-option="2">
+                                                <input disabled type="radio" value="1" name="correct" data-option="2"
+                                                    @if($question->answers[1]->is_right == 1) checked @endif
+                                                >
                                                 <i>
 
                                                 </i>
@@ -70,13 +71,15 @@
                                         </div>
                                         Second Option *
                                     </label>
-                                    <input id="email" name="answers[1][answer]" type="text" class="form-control required">
+                                    <input readonly id="email" name="answers[1][answer]" type="text" class="form-control required">
                                 </div>
                                 <div class="form-group">
                                     <label>
                                         <div class="i-checks">
                                             <label>
-                                                <input type="radio" value="3" name="correct" data-option="3">
+                                                <input disabled type="radio" value="3" name="correct" data-option="3"
+                                                    @if(isset($question->answers[3]) && $question->answers[3]->is_right == 1) checked @endif
+                                                >
                                                 <i>
 
                                                 </i>
@@ -84,12 +87,11 @@
                                         </div>
                                         Fourth Option *
                                     </label>
-                                    <input id="address" name="answers[3][answer]" type="text" class="form-control">
+                                    <input readonly id="address" name="answers[3][answer]" type="text" class="form-control">
                                 </div>
                             </div>
                         </div>
                     </fieldset>
-                    <button type="submit" class="btn btn-primary" style="display:none">Update</button>
                 </form>
             </div>
         </div>

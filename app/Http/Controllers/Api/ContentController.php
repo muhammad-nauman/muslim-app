@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Content;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ContentController extends Controller
 {
@@ -17,11 +18,15 @@ class ContentController extends Controller
     {
         $this->validate(
             request(), [
-                'category_id' => 'required|exists:categories,id',
+                'category_id' => 'sometimes|exists:categories,id',
+                'type' => 'sometimes|in:audio,article',
             ]
         );
-        $content = Content::where('category_id', request('category_id'))
-            ->get()->groupBy('type');
+        
+        $content = QueryBuilder::for(Content::class)
+            ->allowedFilters(['category_id', 'type'])
+            ->get()
+            ->groupBy('type');
 
         return response()->json(
             [

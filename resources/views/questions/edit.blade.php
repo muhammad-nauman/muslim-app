@@ -12,42 +12,24 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12">
+        <a href="javascript:history.go(-1)" class="btn btn-primary">Go Back</a>
+        <h2>Update Question Details</h2>
         <div class="ibox">
-            <div class="ibox-content">
-                <h2>
-                    Update Question Details
-                </h2>
-
+            <div class="ibox-content" style="background-color:#dbe0d6;border-radius:5px">
                 <form id="form" class="wizard-big" method="POST" action="{{ route('questions.update', ['question' => $question->id]) }}">
                     {{ csrf_field() }}
                     {{ method_field('PUT') }}
                     <h1>Question</h1>
                     <fieldset>
-                        <h2>Question Information</h2>
                         <div class="row">
                             <div class="col-lg-8">
-                                @include('misc.categories_select', ['selected' => $question->category_id])
                                 <div class="form-group">
                                     <label>Question *</label>
                                     <input id="question" name="question" type="text" class="form-control required" value="{{ $question->question }}">
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Is Active?</label>
-                                    <div class="col-sm-10">
-                                        <div class="i-checks">
-                                            <label>
-                                                <input type="checkbox" name="is_active" value="1" @if($question->is_active == 1) checked @endif>
-                                                <i></i>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-
-                    </fieldset>
                     <h1>Answers</h1>
-                    <fieldset>
                         <h2>Answers Information</h2>
                         <div class="alert alert-danger alert-dismissable pace-inactive">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -136,6 +118,7 @@
                             </div>
                         </div>
                     </fieldset>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </form>
             </div>
         </div>
@@ -170,65 +153,6 @@
 
 <script>
     $(document).ready(function() {
-        $("#form").steps({
-            bodyTag: "fieldset",
-            onStepChanging: function(event, currentIndex, newIndex) {
-                // Always allow going backward even if the current step contains invalid fields!
-                if (currentIndex > newIndex) {
-                    return true;
-                }
-
-                var form = $(this);
-
-                // Clean up if user went backward before
-                if (currentIndex < newIndex) {
-                    // // To remove error styles
-                    // $(".body:eq(" + newIndex + ") label.error", form).remove();
-                    // $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
-                }
-
-                // Disable validation on fields that are disabled or hidden.
-                // form.validate().settings.ignore = ":disabled,:hidden";
-
-                // Start validation; Prevent going forward if false
-                // return true;
-                return form.valid();
-            },
-            onStepChanged: function(event, currentIndex, priorIndex) {
-
-                // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
-                if (currentIndex === 2) {
-                    $(this).steps("previous");
-                }
-            },
-            onFinishing: function(event, currentIndex) {
-                var form = $(this);
-
-                // Disable validation on fields that are disabled.
-                // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
-                form.validate().settings.ignore = ":disabled";
-
-                if(! $('input[type=radio]').is(':checked')) {
-                    $('.alert-dismissable').removeClass('pace-inactive');
-                    return;
-                }
-
-                console.log(form);
-
-                // Start validation; Prevent form submission if false
-                return form.valid();
-            },
-            onFinished: function(event, currentIndex) {
-                var form = $(this);
-
-                // Submit form input
-                form.submit();
-            }
-        })
-        // 
-
-
-        ;
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green',

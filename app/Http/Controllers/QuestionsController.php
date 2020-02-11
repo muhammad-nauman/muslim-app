@@ -81,17 +81,17 @@ class QuestionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param  Quiz  $quiz
      * @param  Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question)
+    public function edit(Quiz $quiz, Question $question)
     {
-        $categories = Category::where('is_active', 1)->get();
         $question->load('answers');
 
         return view('questions.edit', [
             'question' => $question,
-            'categories' => $categories
+            'quiz' => $quiz,
         ]);
     }
 

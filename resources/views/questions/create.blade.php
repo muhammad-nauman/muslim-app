@@ -137,12 +137,8 @@
 <script>
     $(document).ready(function() {
         $(document).on('mouseenter mouseleave', '.added', function(event) {
-            if(event.type == 'mouseenter') $(this).find('button.edit').show(400);
-            if(event.type === 'mouseleave') $(this).find('button.edit').hide(400);
-        });
-
-        $(document).on('click', '.edit', function() {
-            $(this).parents('form').find('.btn-primary').show(400);
+            if(event.type == 'mouseenter') $(this).find('a.edit').show(400);
+            if(event.type === 'mouseleave') $(this).find('a.edit').hide(400);
         });
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',

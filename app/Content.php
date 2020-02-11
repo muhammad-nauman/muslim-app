@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Category;
+use Illuminate\Support\Facades\Storage;
 
 class Content extends Model
 {
@@ -17,7 +18,7 @@ class Content extends Model
     public function getContentUrlAttribute()
     {
         if($this->type === 'audio') {
-            return asset($this->content);
+            return url(Storage::url($this->content));
         }
         return $this->content;
     }

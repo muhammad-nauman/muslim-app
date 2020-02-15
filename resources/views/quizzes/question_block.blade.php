@@ -18,7 +18,7 @@
                             <div class="col-lg-8">
                                 <div class="form-group">
                                     <label>Question {{ ++$index }}</label>
-                                    <input readonly value="{{ $question->question }}" id="question" name="question" type="text" class="form-control required">
+                                    <input readonly value="{{ $question->question }}"  name="question" type="text" class="form-control required">
                                 </div>
                             </div>
                         </div>
@@ -38,7 +38,9 @@
                                         </div>
                                         First Option *
                                     </label>
-                                    <input readonly id="name" name="answers[0][answer]" type="text" class="form-control required">
+                                    <input readonly  name="answers[0][answer]" type="text" class="form-control required"
+                                        value="{{ $question->answers[0]->answer }}"
+                                    >
                                 </div>
                                 <div class="form-group">
                                     <label>
@@ -53,7 +55,9 @@
                                         </div>
                                         Third Option *
                                     </label>
-                                    <input readonly id="surname" name="answers[2][answer]" type="text" class="form-control">
+                                    <input readonly  name="answers[2][answer]" type="text" class="form-control"
+                                    value=@if(isset($question->answers[2])){{ $question->answers[2]->answer }} @endif
+                                    >
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -71,7 +75,9 @@
                                         </div>
                                         Second Option *
                                     </label>
-                                    <input readonly id="email" name="answers[1][answer]" type="text" class="form-control required">
+                                    <input readonly  name="answers[1][answer]" type="text" class="form-control required"
+                                        value="{{ $question->answers[1]->answer }}"
+                                    >
                                 </div>
                                 <div class="form-group">
                                     <label>
@@ -87,7 +93,9 @@
                                         </div>
                                         Fourth Option *
                                     </label>
-                                    <input readonly id="address" name="answers[3][answer]" type="text" class="form-control">
+                                    <input readonly  name="answers[3][answer]" type="text" class="form-control"
+                                    value=@if(isset($question->answers[3])){{ $question->answers[3]->answer }} @endif
+                                    >
                                 </div>
                             </div>
                         </div>

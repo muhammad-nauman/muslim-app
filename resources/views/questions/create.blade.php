@@ -23,9 +23,12 @@
                     <fieldset>
                         <div class="row">
                             <div class="col-lg-8">
-                                <div class="form-group">
+                                <div class="form-group @error('question') has-error @enderror">
                                     <label>Question *</label>
                                     <input id="question" name="question" type="text" class="form-control required">
+                                    @error('question')
+                                        <span class="help-block">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

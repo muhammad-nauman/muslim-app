@@ -19,7 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResources(
     [
-        'questions' => 'Api\QuestionsController',
+        'quizzes' => 'Api\QuizController',
+        'quizzes.questions' => 'Api\QuestionsController',
         'contents' => 'Api\ContentController',
         'devices' => 'Api\DevicesController',
         'categories' => 'Api\CategoriesController',

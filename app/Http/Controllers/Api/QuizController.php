@@ -3,24 +3,34 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Question;
 use App\Quiz;
+use Illuminate\Http\Request;
+use Spatie\QueryBuilder\QueryBuilder;
 
-class QuestionsController extends Controller
+class QuizController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Quiz $quiz)
+    public function index()
     {
+        $this->validate(
+            request(), [
+                'category_id' => 'sometimes|exists:categories,id',
+            ]
+        );
+        
+        $quizzes = QueryBuilder::for(Quiz::class)
+            ->allowedFilters(['category_id'])
+            ->allowedIncludes('questions', 'questions.answers')
+            ->get();
 
         return response()->json(
             [
             'success' => true,
-            'data' => $quiz->questions()->with('answers')->get(),
+            'data' => $quizzes,
             ]
         );
     }

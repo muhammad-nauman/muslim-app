@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\Content;
 use Illuminate\Http\Request;
 
@@ -40,7 +39,7 @@ class ContentController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $this->validate($request, [
+        $this->validate($request, [
             'category_id' => 'required|exists:categories,id',
             'title' => 'required|min:3|max:200',
             'type' => 'required|in:audio,article',
@@ -59,6 +58,8 @@ class ContentController extends Controller
             $fileName = $request->input('title') . '.' . $request->file->extension();
             $path = $request->file->storeAs('public/audios', $fileName);
             $content->content = $path;
+
+            $content->duration = get_audio_duration(get_storage_driver_path($path));
 
             $content->save();
             return redirect()->route('contents.index');

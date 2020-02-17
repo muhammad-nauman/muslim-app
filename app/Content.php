@@ -4,10 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Category;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 
 class Content extends Model
 {
+    use SoftDeletes;
+    
     protected $guarded = [];
 
     protected $appends = [

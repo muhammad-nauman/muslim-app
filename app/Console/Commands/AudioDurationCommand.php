@@ -44,7 +44,6 @@ class AudioDurationCommand extends Command
 
         $contents->map(function($content) {
             try {
-                // dd(Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix() .'/'. $content->content);
                 $content->duration = get_audio_duration(get_storage_driver_path($content->content));
                 $content->save();
             } catch(Exception $e) {

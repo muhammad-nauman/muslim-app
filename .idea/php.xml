@@ -90,6 +90,16 @@
       <path value="$PROJECT_DIR$/vendor/symfony/service-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/routing" />
       <path value="$PROJECT_DIR$/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/vendor/wapmorgan/mp3info" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-query-builder" />
+      <path value="$PROJECT_DIR$/vendor/bluemoehre/flac-php" />
+      <path value="$PROJECT_DIR$/vendor/wapmorgan/media-file" />
+      <path value="$PROJECT_DIR$/vendor/wapmorgan/binary-stream" />
+      <path value="$PROJECT_DIR$/vendor/wapmorgan/file-type-detector" />
+      <path value="$PROJECT_DIR$/vendor/boyhagemann/wave" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

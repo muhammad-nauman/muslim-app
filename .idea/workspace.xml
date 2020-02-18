@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0676a830-bc45-4040-90d6-f7d94d2558f2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/muslim-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/muslim-app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/AudioDurationCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/AudioDurationCommand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Category.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +162,8 @@
       <option name="presentableId" value="Default" />
       <updated>1580552996376</updated>
       <workItem from="1580552997839" duration="1532000" />
-      <workItem from="1581931622497" duration="1926000" />
+      <workItem from="1581931622497" duration="4176000" />
+      <workItem from="1582018441241" duration="4146000" />
     </task>
     <servers />
   </component>
@@ -176,14 +171,14 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="384" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1581931751396">
+    <state x="384" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1582018504731">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="384" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1581931751396" />
-    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup" timestamp="1581933556645">
+    <state x="384" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1582018504731" />
+    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup" timestamp="1582021299304">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1581933556645" />
+    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1582021299304" />
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1580553665542" />
   </component>
 </project>

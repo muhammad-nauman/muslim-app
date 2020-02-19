@@ -17,7 +17,7 @@ class CreateWeeklyRemindersTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('category_id');
             $table->string('title');
-            $table->unsignedTinyInteger('type');
+            $table->string('type');
             $table->longText('content');
             $table->unsignedTinyInteger('status')
                 ->default(0)
@@ -25,6 +25,8 @@ class CreateWeeklyRemindersTable extends Migration
             $table->unsignedTinyInteger('has_notified')
                 ->default(0)
                 ->comment('0 => No, 1 => yes');
+            $table->timestamp('publishing_timestamp')->nullable();
+            $table->timestamp('expiring_timestamp')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->timestamp('expired_at')->nullable();
             $table->timestamps();

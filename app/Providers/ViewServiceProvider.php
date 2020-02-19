@@ -28,9 +28,12 @@ class ViewServiceProvider extends ServiceProvider
             [
                 'content.create',
                 'content.edit',
-                
+
                 'quizzes.create',
                 'quizzes.edit',
+
+                'weekly_reminders.create',
+                'weekly_reminders.edit',
             ], 'App\Http\View\Composers\CategoriesComposer'
         );
     }

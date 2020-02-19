@@ -40,6 +40,13 @@
                 </ul>
             </li>
             <li>
+                <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">Weekly Reminders</span><span class="fa arrow"></a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="{{ route('weekly_reminders.index') }}"><i class="fa fa-list"></i>All Weekly Reminders</a></li>
+                    <li><a href="{{ route('weekly_reminders.create') }}"><i class="fa fa-plus-circle"></i>Add New</a></li>
+                </ul>
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-users"></i> <span class="nav-label">Users Management</span><span class="fa arrow"></a>
                 <ul class="nav nav-second-level collapse">
                     <li><a href="{{ route('users.index') }}"><i class="fa fa-list"></i>All Users</a></li>

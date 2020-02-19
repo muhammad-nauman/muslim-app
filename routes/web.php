@@ -26,5 +26,6 @@ Route::middleware(['auth'])->group(function() {
         'quizzes.questions' => 'QuestionsController',
         'users' => 'UsersController',
         'contents' => 'ContentController',
+        'weekly_reminders' => 'WeeklyReminderController',
     ]);
 });

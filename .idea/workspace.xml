@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0676a830-bc45-4040-90d6-f7d94d2558f2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/weekly_reminders/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/weekly_reminders/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/weekly_reminders/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Traits/HasContent.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WeeklyReminderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WeeklyReminderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/ViewServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/ViewServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_18_095338_create_weekly_reminders_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_02_18_095338_create_weekly_reminders_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/nav.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/weekly_reminders/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/weekly_reminders/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/weekly_reminders/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/weekly_reminders/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +148,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../quiz" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
@@ -193,7 +190,7 @@
       <workItem from="1580552997839" duration="1532000" />
       <workItem from="1581931622497" duration="4176000" />
       <workItem from="1582018441241" duration="14340000" />
-      <workItem from="1582129010625" duration="2604000" />
+      <workItem from="1582129010625" duration="8009000" />
     </task>
     <servers />
   </component>
@@ -205,6 +202,14 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1582130423062" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1582478236090">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1582478236090" />
+    <state x="486" y="178" key="NewPhpClassDialog" timestamp="1582132207000">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="486" y="178" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1582132207000" />
     <state x="384" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1582129437459">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -213,10 +218,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="379" y="0" width="607" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1582130995186" />
-    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup" timestamp="1582131590406">
+    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup" timestamp="1582480561525">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1582131590406" />
+    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1582480561525" />
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1580553665542" />
   </component>
 </project>

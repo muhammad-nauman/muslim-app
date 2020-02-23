@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title') Content @endsection
+@section('title') Weekly Reminders @endsection
 
 @section('css')
 <link href="{{ url('css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
@@ -11,7 +11,12 @@
 
 <div class="row">
     <a href="{{ route('weekly_reminders.create') }}" class="btn btn-primary">Add New Reminder</a>
-    <h1>All Content</h1>
+    <h1>All Weekly Reminders</h1>
+    <div class="btn-group">
+        <a class="btn @if(request('filter')['status'] == 0) btn-primary @else btn-white @endif btn-rounded" href="{{ route('weekly_reminders.index', ['filter[status]'=> 0]) }}">Pending</a>
+        <a class="btn @if(request('filter')['status'] == 1) btn-primary @else btn-white @endif btn-rounded" href="{{ route('weekly_reminders.index', ['filter[status]'=> 1]) }}">Published</a>
+{{--        <button class="btn btn-white btn-rounded" type="button">Expired</button>--}}
+    </div>
     <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" role="grid">
             <thead>
@@ -19,6 +24,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Type</th>
+                    <th>Published Date</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -28,6 +34,7 @@
                     <td>{{ $weeklyReminder->id }}</td>
                     <td>{{ $weeklyReminder->title }}</td>
                     <td>{{ $weeklyReminder->type }}</td>
+                    <td>{{ $weeklyReminder->publishing_timestamp }}</td>
                     <td class="center">
                         <a href="{{ route('weekly_reminders.edit', [ 'weekly_reminder' => $weeklyReminder->id ]) }}" class="btn btn-primary dim" >
                             <i class="fa fa-edit"></i>

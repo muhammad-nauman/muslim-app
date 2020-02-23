@@ -4,17 +4,27 @@ namespace App\Http\Controllers;
 
 use App\WeeklyReminder;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class WeeklyReminderController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Factory|View
      */
     public function index()
     {
-        $weeklyReminders = WeeklyReminder::get();
+//        $this->validate(request(), [
+//            'filter.status' => 'required'
+//        ]);
+        $weeklyReminders = QueryBuilder::for(WeeklyReminder::class)
+            ->allowedFilters('status')
+            ->get();
 
         return view('weekly_reminders.index', [
             'weeklyReminders' => $weeklyReminders,
@@ -24,7 +34,7 @@ class WeeklyReminderController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -34,8 +44,8 @@ class WeeklyReminderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  Request  $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -52,7 +62,7 @@ class WeeklyReminderController extends Controller
             return redirect()->back()->with('error', 'Please write full content');
         }
 
-        $weeklyReminder = new WeeklyReminder($request->only('category_id', 'title', 'type'));
+        $weeklyReminder = new WeeklyReminder($request->only('category_id', 'title', 'type', 'publishing_timestamp'));
 
         if($request->input('type') === 'audio') {
             $fileName = $request->input('title') . '.' . $request->file->extension();
@@ -75,8 +85,8 @@ class WeeklyReminderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\WeeklyReminder  $weeklyReminder
-     * @return \Illuminate\Http\Response
+     * @param  WeeklyReminder  $weeklyReminder
+     * @return Response
      */
     public function show(WeeklyReminder $weeklyReminder)
     {
@@ -86,8 +96,8 @@ class WeeklyReminderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\WeeklyReminder  $weeklyReminder
-     * @return \Illuminate\Http\Response
+     * @param  WeeklyReminder  $weeklyReminder
+     * @return Factory| View
      */
     public function edit(WeeklyReminder $weeklyReminder)
     {
@@ -99,9 +109,9 @@ class WeeklyReminderController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\WeeklyReminder  $weeklyReminder
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  WeeklyReminder  $weeklyReminder
+     * @return Response
      */
     public function update(Request $request, WeeklyReminder $weeklyReminder)
     {
@@ -111,11 +121,13 @@ class WeeklyReminderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\WeeklyReminder  $weeklyReminder
-     * @return \Illuminate\Http\Response
+     * @param  WeeklyReminder  $weeklyReminder
+     * @return RedirectResponse
      */
     public function destroy(WeeklyReminder $weeklyReminder)
     {
-        //
+        $weeklyReminder->delete();
+
+        return redirect()->back();
     }
 }

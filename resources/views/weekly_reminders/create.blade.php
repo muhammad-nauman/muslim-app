@@ -138,7 +138,7 @@
         });
         $('#expiring_timestamp, #publishing_timestamp').datetimepicker({
             minDate: new Date(),
-            format: 'd-m-Y H:m:s',
+            format: 'Y-m-d H:m:s',
             theme: 'dark'
         });
     });

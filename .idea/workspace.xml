@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0676a830-bc45-4040-90d6-f7d94d2558f2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Traits/HasContent.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WeeklyReminderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WeeklyReminderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/weekly_reminders/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/weekly_reminders/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/weekly_reminders/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/weekly_reminders/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/WeeklyReminder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/WeeklyReminder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +187,7 @@
       <workItem from="1580552997839" duration="1532000" />
       <workItem from="1581931622497" duration="4176000" />
       <workItem from="1582018441241" duration="14340000" />
-      <workItem from="1582129010625" duration="8009000" />
+      <workItem from="1582129010625" duration="13088000" />
     </task>
     <servers />
   </component>
@@ -198,10 +195,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1582130423062">
+    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1582542075751">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1582130423062" />
+    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1582542075751" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1582478236090">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

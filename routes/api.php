@@ -22,6 +22,7 @@ Route::apiResources(
         'quizzes' => 'Api\QuizController',
         'quizzes.questions' => 'Api\QuestionsController',
         'contents' => 'Api\ContentController',
+        'weekly_reminders' => 'Api\WeeklyRemindersController',
         'devices' => 'Api\DevicesController',
         'categories' => 'Api\CategoriesController',
     ]

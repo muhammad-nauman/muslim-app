@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Classes\PopularSort;
+use App\Device;
 use App\Http\Controllers\Controller;
+use App\Traits\Likeable;
 use Illuminate\Http\Request;
 use App\Content;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\AllowedSort;
 use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\Sorts\Sort;
 
 class ContentController extends Controller
 {
+    use Likeable;
     /**
      * Display a listing of the resource.
      *
@@ -22,9 +29,10 @@ class ContentController extends Controller
                 'type' => 'sometimes|in:audio,article',
             ]
         );
-        
+
         $content = QueryBuilder::for(Content::class)
             ->allowedFilters(['category_id', 'type'])
+            ->allowedSorts(AllowedSort::custom('popular', new PopularSort(), ''))
             ->get()
             ->groupBy('type');
 
@@ -79,5 +87,11 @@ class ContentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function like(Request $request, Content $content)
+    {
+        return $this->likeIt($request, $content);
     }
 }

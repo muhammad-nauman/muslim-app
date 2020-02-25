@@ -45,4 +45,9 @@ class WeeklyReminder extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function devices()
+    {
+        return $this->belongsToMany(Device::class);
+    }
 }

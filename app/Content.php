@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class Content extends Model
 {
     use SoftDeletes;
-    
+
     protected $guarded = [];
 
     protected $appends = [
@@ -29,5 +29,10 @@ class Content extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function devices()
+    {
+        return $this->belongsToMany(Device::class);
     }
 }

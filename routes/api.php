@@ -27,3 +27,5 @@ Route::apiResources(
         'categories' => 'Api\CategoriesController',
     ]
 );
+
+Route::post('like/{content}', 'Api\ContentController@like');

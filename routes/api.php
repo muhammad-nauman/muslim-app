@@ -28,4 +28,5 @@ Route::apiResources(
     ]
 );
 
-Route::post('like/{content}', 'Api\ContentController@like');
+Route::post('like/content/{content}', 'Api\ContentController@like');
+Route::post('like/reminder/{weeklyReminder}', 'Api\WeeklyRemindersController@like');

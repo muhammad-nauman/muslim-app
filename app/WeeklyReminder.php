@@ -14,6 +14,7 @@ class WeeklyReminder extends Model
 
     protected $appends = [
         'content_url',
+        'is_liked',
     ];
 
 
@@ -23,6 +24,11 @@ class WeeklyReminder extends Model
             return url(Storage::url($this->content));
         }
         return $this->content;
+    }
+
+    public function getIsLikedAttribute()
+    {
+        return $this->devices()->where('device_id', request('device_id'))->exists();
     }
 
 

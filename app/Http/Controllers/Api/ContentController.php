@@ -3,15 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Classes\PopularSort;
-use App\Device;
 use App\Http\Controllers\Controller;
 use App\Traits\Likeable;
 use Illuminate\Http\Request;
 use App\Content;
-use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\AllowedSort;
 use Spatie\QueryBuilder\QueryBuilder;
-use Spatie\QueryBuilder\Sorts\Sort;
 
 class ContentController extends Controller
 {

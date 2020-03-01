@@ -21,7 +21,7 @@ class WeeklyReminder extends Model
     public function getContentUrlAttribute()
     {
         if($this->type === 'audio') {
-            return url(Storage::url($this->content));
+            return url(Storage::url(preg_replace('/\s/', '%20', $this->content)));
         }
         return $this->content;
     }

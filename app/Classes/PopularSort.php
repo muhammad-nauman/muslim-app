@@ -11,9 +11,7 @@ class PopularSort implements Sort
 {
     public function __invoke(Builder $query, bool $descending, string $property)
     {
-        $direction = 'DESC';
-
         $query->withCount('devices')
-            ->orderByRaw("devices_count {$direction}");
+            ->orderByRaw("devices_count DESC");
     }
 }

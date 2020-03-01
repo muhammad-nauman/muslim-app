@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0676a830-bc45-4040-90d6-f7d94d2558f2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ContentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ContentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/WeeklyRemindersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/WeeklyRemindersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Classes/PopularSort.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Classes/PopularSort.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Content.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Content.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/WeeklyReminder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/WeeklyReminder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,11 +150,11 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\laragon\www\muslim-app\public\js\plugins" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\laragon\www\muslim-app\resources\views" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\muslim-app\public\js\plugins" />
     </key>
   </component>
   <component name="RunManager">
@@ -191,7 +190,10 @@
       <workItem from="1582018441241" duration="14340000" />
       <workItem from="1582129010625" duration="27189000" />
       <workItem from="1582695558995" duration="1377000" />
-      <workItem from="1582834851179" duration="1372000" />
+      <workItem from="1582834851179" duration="4760000" />
+      <workItem from="1582886118899" duration="881000" />
+      <workItem from="1582888476500" duration="1344000" />
+      <workItem from="1583050062035" duration="916000" />
     </task>
     <servers />
   </component>
@@ -211,18 +213,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="486" y="178" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1582631920804" />
-    <state x="384" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1582695642284">
+    <state x="384" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1582888542644">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="384" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1582695642284" />
+    <state x="384" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1582888542644" />
     <state x="379" y="0" width="607" height="728" key="find.popup" timestamp="1582130995186">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="379" y="0" width="607" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1582130995186" />
-    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup" timestamp="1582836159221">
+    <state x="339" y="162" key="run.anything.popup" timestamp="1583050931604">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1582836159221" />
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1583050931604" />
+    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup" timestamp="1583050659395">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1583050659395" />
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1580553665542" />
   </component>
 </project>

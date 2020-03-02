@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResources(
     [
         'quizzes' => 'Api\QuizController',
-        'quizzes.questions' => 'Api\QuestionsController',
+        'questions' => 'Api\QuestionsController',
         'contents' => 'Api\ContentController',
         'weekly_reminders' => 'Api\WeeklyRemindersController',
         'devices' => 'Api\DevicesController',

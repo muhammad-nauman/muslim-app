@@ -14,13 +14,21 @@ class QuestionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Quiz $quiz)
+    public function index(Request $request)
     {
+        $this->validate($request, [
+            'category_id' => 'required'
+        ]);
+        $category_id = preg_split('/[,]+/', $request->input('category_id'), NULL, PREG_SPLIT_NO_EMPTY);
+
+        $questions = Question::whereHas('question_categories', function($query) use ($category_id) {
+            $query->whereIn('question_categories.id', $category_id);
+        })->with('answers')->withCount('answers')->inRandomOrder()->take(10)->get();
 
         return response()->json(
             [
             'success' => true,
-            'data' => $quiz->questions()->with('answers')->get(),
+            'data' => $questions,
             ]
         );
     }

@@ -7,20 +7,36 @@
 <link href="{{ url('css/plugins/iCheck/custom.css') }}" rel="stylesheet">
 <link href="{{ url('css/plugins/steps/jquery.steps.css') }}" rel="stylesheet">
 <link href="{{ url('/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css" type="text/css"/>
 @endsection
 
 @section('content')
-<a href="{{ route('quizzes.create') }}" class="btn btn-primary">All Quizzes</a>
-@if($questions->count() < $quiz->no_of_questions)
+<a href="{{ route('questions.index') }}" class="btn btn-primary">All Questions</a>
 <div class="row">
     <div class="col-lg-12">
         <div class="ibox">
-        <h2>Add Question # <strong>{{ $questions->count() + 1 }}</strong> For <strong>{{ $quiz->name }}</strong></h2>
+        <h2>Add New Question</h2>
             <div class="ibox-content" style="background-color:#dbe0d6;border-radius:5px">
 
-                <form id="form" class="wizard-big" method="POST" action="{{ route('quizzes.questions.store', ['quiz' => $quiz->id]) }}">
+                <form id="form" class="wizard-big" method="POST" action="{{ route('questions.store') }}">
                     {{ csrf_field() }}
                     <fieldset>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="form-group @error('question_category_id') has-error @enderror">
+                                    <label>Category</label>
+                                    <select multiple="multiple" class="multiselect form-control" name="question_category_id[]">
+                                        <option value="">Select Categories</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('question_category_id')
+                                    <span class="help-block">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-lg-8">
                                 <div class="form-group @error('question') has-error @enderror">
@@ -99,17 +115,13 @@
                             </div>
                         </div>
                     </fieldset>
-                    <button type="submit" class="btn btn-primary">Add Another</button>
+                    <button type="submit" class="btn btn-primary">Add </button>
                 </form>
             </div>
         </div>
     </div>
 
 </div>
-@endif
-<h2>All Questions <strong>{{ $questions->count() }} / {{ $quiz->no_of_questions }}</strong> </h2>
-<small>Questions added / Total number of questions</small>
-@include('quizzes.question_block')
 
 </div>
 @endsection
@@ -133,6 +145,7 @@
 <script src="{{ url('js/plugins/validate/jquery.validate.min.js') }}"></script>
 <!-- iCheck -->
 <script src="{{ url('/js/plugins/iCheck/icheck.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script>
 @endsection
 @section('script_code')
 
@@ -147,6 +160,8 @@
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green',
         });
+
+        $('.multiselect').multiselect();
     });
 </script>
 @endsection

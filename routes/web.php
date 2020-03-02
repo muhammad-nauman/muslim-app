@@ -23,7 +23,7 @@ Route::middleware(['auth'])->group(function() {
     Route::resources([
         'categories' => 'CategoriesController',
         'quizzes' => 'QuizController',
-        'quizzes.questions' => 'QuestionsController',
+        'questions' => 'QuestionsController',
         'users' => 'UsersController',
         'contents' => 'ContentController',
         'weekly_reminders' => 'WeeklyReminderController',

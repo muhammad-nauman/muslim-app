@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\QuestionCategory;
 use Illuminate\Http\Request;
 use App\Question;
 use App\Category;
@@ -15,10 +16,10 @@ class QuestionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Quiz $quiz)
+    public function index()
     {
-        $questions = $quiz->questions()->withCount('answers')->get();
-        return view('questions.index', ['questions' => $questions, 'quiz' => $quiz]);
+        $questions = Question::with('question_categories:name')->withCount('answers')->get();
+        return view('questions.index', ['questions' => $questions]);
     }
 
     /**
@@ -26,12 +27,10 @@ class QuestionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Quiz $quiz)
+    public function create()
     {
-        return view('questions.create', [
-            'quiz' => $quiz,
-            'questions' => $quiz->questions
-        ]);
+        $categories = QuestionCategory::get();
+        return view('questions.create', compact('categories'));
     }
 
     /**
@@ -41,9 +40,10 @@ class QuestionsController extends Controller
      * @param  Quiz  $quiz
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Quiz $quiz)
+    public function store(Request $request)
     {
         $this->validate($request, [
+            'question_category_id' => 'required|array',
             'question' => 'required|unique:questions',
             'answers' => 'required|array|between:2,4',
             'correct' => 'required|min:0|max:3',
@@ -53,8 +53,8 @@ class QuestionsController extends Controller
             return redirect()->back()->with('message', 'Please select correct answer');
         }
 
-        $question = new Question($request->only( 'question'));
-        $quiz->questions()->save($question);
+        $question = Question::create($request->only( 'question'));
+        $question->question_categories()->attach($request->input('question_category_id'));
         $answers = $request->answers;
         $answers[request('correct')] = array_merge($answers[request('correct')], ['is_right' => true]);
 

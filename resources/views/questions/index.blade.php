@@ -4,12 +4,13 @@
 
 @section('css')
 <link href="{{ url('css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
+<link href="{{ url('css/plugins/sweetalert/sweetalert.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
 
 <div class="row">
-    <a href="{{ route('quizzes.index') }}" class="btn btn-primary">All Quizzes</a>
+    <a href="{{ route('questions.create') }}" class="btn btn-primary">Add New Question</a>
     <h1>All Questions</h1>
     <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" role="grid">
@@ -17,7 +18,7 @@
                 <tr role="row">
                     <th>ID</th>
                     <th>Question</th>
-                    <th>Is Active?</th>
+                    <th>Categories</th>
                     <th>Number of Options</th>
                     <th>Action</th>
                 </tr>
@@ -27,18 +28,18 @@
                 <tr class="gradeA">
                     <td>{{ $question->id }}</td>
                     <td>{{ $question->question }}</td>
-                    <td>{{ $question->is_active === 1 ? 'Yes' : 'No' }}</td>
+                    <td>{{ $question->question_categories->implode('name', ', ') }}</td>
                     <td>{{ $question->answers_count }}</td>
                     <td class="center">
-                        <a href="{{ route('quizzes.questions.create', [ 'quiz' => $quiz->id ]) }}" class="btn btn-primary dim" >
+                        <a href="{{ route('questions.edit', [ 'question' => $question->id ]) }}" class="btn btn-primary dim" >
                             <i class="fa fa-edit"></i>
                         </a>
-                        
-                        <form id="delete_form" action="{{ route('quizzes.questions.destroy', [ 'quiz' => $quiz->id, 'question' => $question->id ]) }}" method="POST" style="display: none;">
+
+                        <form id="delete_form" action="{{ route('questions.destroy', [ 'question' => $question->id ]) }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                         </form>
-                        <a class="btn btn-danger dim" onclick="event.preventDefault(); document.getElementById('delete_form').submit();">
+                        <a class="btn btn-danger dim" onclick="event.preventDefault(); onDelete(document.getElementById('delete_form'));">
                             <i class="fa fa-trash"></i>
                         </a>
                     </td>
@@ -65,6 +66,8 @@
 <!-- Custom and plugin javascript -->
 <script src="{{ url('/js/inspinia.js') }}"></script>
 <script src="{{ url('/js/plugins/pace/pace.min.js') }}"></script>
+<script src="{{ url('/js/plugins/sweetalert/sweetalert.min.js') }}"></script>
+<script src="{{ url('/js/custom.js') }}"></script>
 
 @endsection
 

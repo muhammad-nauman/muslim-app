@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoryQuestionPivotTable extends Migration
+class CreateQuestionCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateCategoryQuestionPivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_question', function (Blueprint $table) {
+        Schema::create('question_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateCategoryQuestionPivotTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_question');
+        Schema::dropIfExists('question_categories');
     }
 }

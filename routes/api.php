@@ -28,5 +28,6 @@ Route::apiResources(
     ]
 );
 
+Route::get('question_categories', 'Api\QuestionCategoryController');
 Route::post('like/content/{content}', 'Api\ContentController@like');
 Route::post('like/reminder/{weeklyReminder}', 'Api\WeeklyRemindersController@like');

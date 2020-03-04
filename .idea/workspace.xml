@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0676a830-bc45-4040-90d6-f7d94d2558f2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/headings/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/headings/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/headings/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/muslim-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/muslim-app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/nav.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,9 +142,18 @@
       <path value="$PROJECT_DIR$/vendor/wapmorgan/binary-stream" />
       <path value="$PROJECT_DIR$/vendor/wapmorgan/file-type-detector" />
       <path value="$PROJECT_DIR$/vendor/boyhagemann/wave" />
+      <path value="$PROJECT_DIR$/vendor/brozot/laravel-fcm" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
     </include_path>
   </component>
   <component name="ProjectId" id="1XCbPAXt8kVPNduEQBtvOcfKx0F" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -191,7 +210,9 @@
       <workItem from="1582886118899" duration="881000" />
       <workItem from="1582888476500" duration="1344000" />
       <workItem from="1583050062035" duration="8515000" />
-      <workItem from="1583152858124" duration="11545000" />
+      <workItem from="1583152858124" duration="12367000" />
+      <workItem from="1583322118647" duration="837000" />
+      <workItem from="1583323111207" duration="5190000" />
     </task>
     <servers />
   </component>
@@ -211,10 +232,14 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="486" y="178" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1582631920804" />
-    <state x="384" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1582888542644">
+    <state x="517" y="287" key="NewPhpFileDialog" timestamp="1583347771607">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="384" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1582888542644" />
+    <state x="517" y="287" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1583347771607" />
+    <state x="384" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1583323183072">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="384" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1583323183072" />
     <state x="379" y="0" width="607" height="728" key="find.popup" timestamp="1582130995186">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -223,10 +248,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1583050931604" />
-    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup" timestamp="1583175448239">
+    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup" timestamp="1583348022837">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1583175448239" />
+    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1583348022837" />
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1580553665542" />
   </component>
 </project>

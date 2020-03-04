@@ -23,6 +23,9 @@
                 <a href="{{ route('dashboard') }}"><i class="fa fa-area-chart"></i> <span class="nav-label">Dashboard</span></a>
             </li>
             <li>
+                <a href="{{ route('headings.index') }}"><i class="fa fa-area-chart"></i> <span class="nav-label">Headings</span></a>
+            </li>
+            <li>
                 <a href="{{ route('categories.index') }}"><i class="fa fa-clock-o"></i> <span class="nav-label">Categories</span></a>
             </li>
             <li>

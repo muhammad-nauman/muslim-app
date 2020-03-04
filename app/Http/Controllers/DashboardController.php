@@ -9,6 +9,10 @@ use App\Question;
 use App\Quiz;
 use App\User;
 use Illuminate\Http\Request;
+use LaravelFCM\Facades\FCM;
+use LaravelFCM\Message\OptionsBuilder;
+use LaravelFCM\Message\PayloadDataBuilder;
+use LaravelFCM\Message\PayloadNotificationBuilder;
 
 class DashboardController extends Controller
 {
@@ -38,5 +42,30 @@ class DashboardController extends Controller
             'monthlyNewUsersCount' => $monthlyNewUsersCount,
             'todayActiveUsersCount' => $todayActiveUsersCount,
         ]);
+    }
+
+    public function notify()
+    {
+        $optionBuilder = new OptionsBuilder();
+        $optionBuilder->setTimeToLive(60*20);
+
+        $notificationBuilder = new PayloadNotificationBuilder('my title');
+        $notificationBuilder->setBody('Hello world')
+            ->setSound('default');
+
+        $dataBuilder = new PayloadDataBuilder();
+        $dataBuilder->addData(['a_data' => 'my_data']);
+
+        $option = $optionBuilder->build();
+        $notification = $notificationBuilder->build();
+        $data = $dataBuilder->build();
+
+        $tokens = Device::where('device_type', 'android')->pluck('fcm_id')->toArray();
+
+        $downstreamResponse = FCM::sendTo($tokens, $option, $notification, $data);
+
+        dd($downstreamResponse->numberSuccess(),
+        $downstreamResponse->numberFailure(),
+        $downstreamResponse->numberModification());
     }
 }

@@ -27,5 +27,8 @@ Route::middleware(['auth'])->group(function() {
         'users' => 'UsersController',
         'contents' => 'ContentController',
         'weekly_reminders' => 'WeeklyReminderController',
+        'headings' => 'HeadingController',
     ]);
 });
+
+Route::get('notify', 'DashboardController@notify');

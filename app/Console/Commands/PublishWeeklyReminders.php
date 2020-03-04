@@ -39,7 +39,7 @@ class PublishWeeklyReminders extends Command
     public function handle()
     {
         $weeklyReminders = WeeklyReminder::where('status', 0)
-            ->where('publishing_timestamp', '<=', now())
+            ->where('publishing_timestamp', '<=', now()->addHours(5))
             ->get();
 
         $weeklyReminders->map(function($weeklyReminder) {

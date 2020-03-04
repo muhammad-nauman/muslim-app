@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Traits\Likeable;
 use App\WeeklyReminder;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\AllowedSort;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -28,7 +29,7 @@ class WeeklyRemindersController extends Controller
             ]
         );
 
-        $reminders = QueryBuilder::for(WeeklyReminder::class)
+        $reminders = QueryBuilder::for(WeeklyReminder::class)->published()
             ->allowedFilters(['category_id', 'type', 'status'])
             ->allowedSorts(AllowedSort::custom('popular', new PopularSort(), ''))
             ->defaultSort('-created_at')

@@ -25,6 +25,7 @@ Route::apiResources(
         'weekly_reminders' => 'Api\WeeklyRemindersController',
         'devices' => 'Api\DevicesController',
         'categories' => 'Api\CategoriesController',
+        'headings' => 'Api\HeadingsController',
     ]
 );
 

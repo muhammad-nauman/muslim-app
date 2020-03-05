@@ -39,6 +39,14 @@
                 @enderror
             </div>
         </div>
+        <div class="form-group @error('author_name') has-error @enderror"><label class="col-lg-2 control-label">Author / Speaker</label>
+            <div class="col-lg-7">
+                <input type="text" name="author_name" placeholder="Author / Speaker Name" class="form-control" value="{{ old('author_name') }}">
+                @error('author_name')
+                <span class="help-block text-red m-b-none">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>
         <div class="form-group @error('publishing_timestamp') has-error @enderror"><label class="col-lg-2 control-label">Publish Date & Time</label>
             <div class="col-lg-7">
                 <input readonly type="text" name="publishing_timestamp" placeholder="Publish Date & Time" id="publishing_timestamp" class="form-control" value="{{ old('publishing_timestamp') }}">

@@ -51,10 +51,11 @@ class WeeklyReminderController extends Controller
     {
         $this->validate($request, [
             'category_id'           => 'required|exists:categories,id',
+            'author_name'           => 'required',
             'title'                 => 'required|unique:weekly_reminders',
             'publishing_timestamp'  => 'required|after:today',
             'type'                  => 'required|in:audio,article',
-            'content' => 'required_if:type,article|min:3|max:2000',
+            'content' => 'required_if:type,article|min:3|max:20000',
             'file' => 'required_if:type,audio|mimes:mpga,wav',
         ]);
 
@@ -62,7 +63,7 @@ class WeeklyReminderController extends Controller
             return redirect()->back()->with('error', 'Please write full content');
         }
 
-        $weeklyReminder = new WeeklyReminder($request->only('category_id', 'title', 'type', 'publishing_timestamp'));
+        $weeklyReminder = new WeeklyReminder($request->only('category_id', 'author_name', 'title', 'type', 'publishing_timestamp'));
 
         if($request->input('type') === 'audio') {
             $fileName = $request->input('title') . '.' . $request->file->extension();
@@ -115,7 +116,39 @@ class WeeklyReminderController extends Controller
      */
     public function update(Request $request, WeeklyReminder $weeklyReminder)
     {
-        //
+        $this->validate($request, [
+            'category_id'           => 'required|exists:categories,id',
+            'author_name'           => 'required',
+            'title'                 => 'required|unique:weekly_reminders,title,' . $weeklyReminder->id,
+            'publishing_timestamp'  => 'required|after:today',
+            'type'                  => 'required|in:audio,article',
+            'content'               => 'sometimes|min:3|max:20000',
+            'file'                  => 'sometimes|mimes:mpga,wav',
+        ]);
+
+        if($request->input('type') === 'article' && $request->input('content') === '<p><br></p>') {
+            return redirect()->back()->with('error', 'Please write full content');
+        }
+
+        $weeklyReminder
+            ->update($request->only('category_id', 'author_name', 'title', 'type', 'publishing_timestamp'));
+
+        if($request->hasFile('file') && $request->input('type') == 'audio') {
+            $fileName = $request->input('title') . '.' . $request->file->extension();
+            $path = $request->file->storeAs('public/audios/reminders', $fileName);
+            $weeklyReminder->content = $path;
+
+            $weeklyReminder->duration = get_audio_duration(get_storage_driver_path($path));
+
+            $weeklyReminder->save();
+            return redirect()->route('weekly_reminders.index');
+        }
+
+        $weeklyReminder->content = $request->input('type') === 'audio' ? $request->input('old_file') : $request->input('content');
+
+        $weeklyReminder->save();
+
+        return redirect()->route('weekly_reminders.index');
     }
 
     /**

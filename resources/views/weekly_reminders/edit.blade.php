@@ -1,4 +1,4 @@
-@extends('layouts.app')
+    @extends('layouts.app')
 
 @section('title') Edit Weekly Reminder @endsection
 @section('css')
@@ -18,6 +18,7 @@
             <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{ route('weekly_reminders.update', ['weekly_reminder' => $weeklyReminder->id]) }}">
 
                 {{ csrf_field() }}
+                {{ method_field('PATCH') }}
                 <div class="form-group @error('category_id') has-error @enderror"><label class="col-lg-2 control-label">Category</label>
                     <div class="col-lg-7">
                         <select class="form-control m-b required" name="category_id">
@@ -35,6 +36,14 @@
                     <div class="col-lg-7">
                         <input type="text" name="title" placeholder="Title" class="form-control" value="{{ $weeklyReminder->title }}">
                         @error('title')
+                        <span class="help-block text-red m-b-none">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group @error('author_name') has-error @enderror"><label class="col-lg-2 control-label">Author / Speaker</label>
+                    <div class="col-lg-7">
+                        <input type="text" name="author_name" placeholder="Author / Speaker Name" class="form-control" value="{{ $weeklyReminder->author_name }}">
+                        @error('author_name')
                         <span class="help-block text-red m-b-none">{{ $message }}</span>
                         @enderror
                     </div>
@@ -59,8 +68,8 @@
                     <div class="col-lg-7">
                         <select class="form-control" id="content_type" name="type">
                             <option value="">Select Content Type</option>
-                            <option value="audio" @if(old('type') === 'audio') selected @endif>Audio</option>
-                            <option value="article" @if(old('type') === 'article') selected @endif>Article</option>
+                            <option value="audio" @if($weeklyReminder->type === 'audio') selected @endif>Audio</option>
+                            <option value="article" @if($weeklyReminder->type === 'article') selected @endif>Article</option>
                         </select>
                         @error('type')
                         <span class="help-block text-red m-b-none">{{ $message }}</span>
@@ -70,6 +79,7 @@
                 <div class="form-group @error('file') has-error @enderror pace-inactive audio"><label class="col-lg-2 control-label">Audio File</label>
                     <div class="col-lg-7">
                         <input type="file" name="file">
+                        <input type="hidden" name="old_file" value="{{ $weeklyReminder->content }}">
                         @error('file')
                         <span class="help-block text-red m-b-none">{{ $message }}</span>
                         @enderror
@@ -138,7 +148,7 @@
             });
             $('#expiring_timestamp, #publishing_timestamp').datetimepicker({
                 minDate: new Date(),
-                format: 'd-m-Y H:m:s',
+                format: 'Y-m-d H:m:s',
                 theme: 'dark'
             });
         });

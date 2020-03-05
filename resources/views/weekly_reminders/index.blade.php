@@ -23,6 +23,7 @@
                 <tr role="row">
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Author / Speaker</th>
                     <th>Type</th>
                     <th>Published Date</th>
                     <th>Action</th>
@@ -33,6 +34,7 @@
                 <tr class="gradeA">
                     <td>{{ $weeklyReminder->id }}</td>
                     <td>{{ $weeklyReminder->title }}</td>
+                    <td>{{ $weeklyReminder->author_name }}</td>
                     <td>{{ $weeklyReminder->type }}</td>
                     <td>{{ $weeklyReminder->publishing_timestamp }}</td>
                     <td class="center">

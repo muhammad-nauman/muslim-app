@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="0676a830-bc45-4040-90d6-f7d94d2558f2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WeeklyReminderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WeeklyReminderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/weekly_reminders/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/weekly_reminders/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/weekly_reminders/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/weekly_reminders/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/weekly_reminders/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/weekly_reminders/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestionsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestionsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/questions/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questions/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/questions/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questions/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +206,7 @@
       <workItem from="1583050062035" duration="8515000" />
       <workItem from="1583152858124" duration="12367000" />
       <workItem from="1583322118647" duration="837000" />
-      <workItem from="1583323111207" duration="15847000" />
+      <workItem from="1583323111207" duration="18020000" />
     </task>
     <servers />
   </component>
@@ -242,10 +242,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1583050931604" />
-    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup" timestamp="1583396273954">
+    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup" timestamp="1583402534339">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1583396273954" />
+    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1583402534339" />
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1580553665542" />
   </component>
 </project>

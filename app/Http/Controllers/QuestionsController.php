@@ -87,11 +87,15 @@ class QuestionsController extends Controller
      */
     public function edit(Quiz $quiz, Question $question)
     {
+        $categories = QuestionCategory::get();
         $question->load('answers');
 
+        $question->category_ids = $question->question_categories()->pluck('question_category_id');
+
         return view('questions.edit', [
-            'question' => $question,
-            'quiz' => $quiz,
+            'question'   => $question,
+            'quiz'       => $quiz,
+            'categories' => $categories,
         ]);
     }
 
@@ -105,6 +109,8 @@ class QuestionsController extends Controller
     public function update(Request $request, Quiz $quiz, Question $question)
     {
         $this->validate($request, [
+            'question_category_id' => 'required|array',
+            'question_category_id.*' => 'required|exists:question_categories,id',
             'question' => 'required|unique:questions,question,'. $question->id,
             'answers' => 'required|array|between:2,4',
             'correct' => 'required|min:0|max:3',
@@ -113,6 +119,10 @@ class QuestionsController extends Controller
         if(! isset(request('answers')[request('correct')]) && is_null(request('answers')[request('correct')]['answer'])) {
             return redirect()->back()->with('message', 'Please select correct answer');
         }
+
+        $question->question_categories()->detach();
+
+        $question->question_categories()->attach($request->input('question_category_id'));
 
         $question->update($request->only('question'));
         $answers = $request->answers;

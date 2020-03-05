@@ -35,11 +35,11 @@
                             <i class="fa fa-edit"></i>
                         </a>
 
-                        <form id="delete_form" action="{{ route('questions.destroy', [ 'question' => $question->id ]) }}" method="POST" style="display: none;">
+                        <form id="delete_form_{{$question->id}}" action="{{ route('questions.destroy', [ 'question' => $question->id ]) }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                         </form>
-                        <a class="btn btn-danger dim" onclick="event.preventDefault(); onDelete(document.getElementById('delete_form'));">
+                        <a class="btn btn-danger dim" onclick="event.preventDefault(); onDelete(document.getElementById('delete_form_{{$question->id}}'));">
                             <i class="fa fa-trash"></i>
                         </a>
                     </td>

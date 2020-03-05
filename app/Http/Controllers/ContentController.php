@@ -17,7 +17,7 @@ class ContentController extends Controller
         $contents = Content::whereHas('category', function($query) {
             return $query->where('is_active', 1);
         })->get();
-        
+
         return view('content.index', ['contents' => $contents]);
     }
 
@@ -43,15 +43,15 @@ class ContentController extends Controller
             'category_id' => 'required|exists:categories,id',
             'title' => 'required|min:3|max:200',
             'type' => 'required|in:audio,article',
-            'content' => 'required_if:type,article|min:3|max:2000',
+            'content' => 'required_if:type,article|min:3|max:20000',
             'file' => 'required_if:type,audio|mimes:mpga,wav',
         ]);
 
-        
+
         if($request->input('type') === 'article' && $request->input('content') === '<p><br></p>') {
             return redirect()->back()->with('error', 'Please write full content');
         }
-        
+
         $content = new Content($request->only('category_id', 'title', 'type'));
 
         if($request->input('type') === 'audio') {
@@ -105,7 +105,39 @@ class ContentController extends Controller
      */
     public function update(Request $request, Content $content)
     {
-        //
+        $this->validate($request, [
+            'category_id' => 'required|exists:categories,id',
+            'title' => 'required|min:3|max:200',
+            'type' => 'required|in:audio,article',
+            'content' => 'required_if:type,article|min:3|max:20000',
+            'file' => 'sometimes|mimes:mpga,wav',
+        ]);
+
+
+        if($request->input('type') === 'article' && $request->input('content') === '<p><br></p>') {
+            return redirect()->back()->with('error', 'Please write full content');
+        }
+
+        $content->update($request->only('category_id', 'title', 'type'));
+
+        if($request->hasFile('file') && $request->input('type') === 'audio') {
+            $fileName = $request->input('title') . '.' . $request->file->extension();
+            $path = $request->file->storeAs('public/audios', $fileName);
+            $content->content = $path;
+
+            $content->duration = get_audio_duration(get_storage_driver_path($path));
+
+            $content->save();
+            return redirect()->route('contents.index');
+        }
+
+        $content->content = $request->input('type') === 'audio'
+            ? $request->input('old_file')
+            : $request->input('content');
+
+        $content->save();
+
+        return redirect()->route('contents.index');
     }
 
     /**

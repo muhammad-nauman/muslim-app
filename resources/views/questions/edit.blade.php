@@ -7,6 +7,7 @@
 <link href="{{ url('css/plugins/iCheck/custom.css') }}" rel="stylesheet">
 <link href="{{ url('css/plugins/steps/jquery.steps.css') }}" rel="stylesheet">
 <link href="{{ url('/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css" type="text/css"/>
 @endsection
 
 @section('content')
@@ -21,6 +22,23 @@
                     {{ method_field('PUT') }}
                     <h1>Question</h1>
                     <fieldset>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="form-group @error('question_category_id') has-error @enderror">
+                                    <label>Category</label>
+                                    <select multiple="multiple" class="multiselect form-control" name="question_category_id[]">
+                                        <option value="">Select Categories</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}"
+                                                    @if($question->category_ids->search($category->id) !== false) selected @endif>{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('question_category_id')
+                                    <span class="help-block">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-lg-8">
                                 <div class="form-group">
@@ -147,6 +165,7 @@
 <script src="{{ url('js/plugins/validate/jquery.validate.min.js') }}"></script>
 <!-- iCheck -->
 <script src="{{ url('/js/plugins/iCheck/icheck.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script>
 @endsection
 @section('script_code')
 
@@ -157,6 +176,7 @@
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green',
         });
+        $('.multiselect').multiselect();
     });
 </script>
 @endsection

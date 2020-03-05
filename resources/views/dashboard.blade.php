@@ -20,13 +20,13 @@
     <div class="col-lg-3">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <span class="label label-info pull-right">Active</span>
-                <h5>Quizzes</h5>
+                <span class="label label-info pull-right">All</span>
+                <h5>Question Categories</h5>
             </div>
             <div class="ibox-content">
-                <h1 class="no-margins">{{ $quizCount }}</h1>
+                <h1 class="no-margins">{{ $questionCategoriesCount }}</h1>
                 <!-- <div class="stat-percent font-bold text-info"></div> -->
-                <small>All Active Quizzes</small>
+                <small>All Active Question Categorise</small>
             </div>
         </div>
     </div>

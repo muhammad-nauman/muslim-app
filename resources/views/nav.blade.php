@@ -16,17 +16,17 @@
                     </form>
                 </div>
                 <div class="logo-element">
-                    IN+
+                    MA+
                 </div>
             </li>
             <li>
                 <a href="{{ route('dashboard') }}"><i class="fa fa-area-chart"></i> <span class="nav-label">Dashboard</span></a>
             </li>
             <li>
-                <a href="{{ route('headings.index') }}"><i class="fa fa-area-chart"></i> <span class="nav-label">Headings</span></a>
+                <a href="{{ route('headings.index') }}"><i class="fa fa-header"></i> <span class="nav-label">Headings</span></a>
             </li>
             <li>
-                <a href="{{ route('categories.index') }}"><i class="fa fa-clock-o"></i> <span class="nav-label">Categories</span></a>
+                <a href="{{ route('categories.index') }}"><i class="fa fa-list-ul"></i> <span class="nav-label">Categories</span></a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-question-circle"></i> <span class="nav-label">Questions Management</span><span class="fa arrow"></a>
@@ -36,14 +36,14 @@
                 </ul>
             </li>
             <li>
-                <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">Content Management</span><span class="fa arrow"></a>
+                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Content Management</span><span class="fa arrow"></a>
                 <ul class="nav nav-second-level collapse">
                     <li><a href="{{ route('contents.index') }}"><i class="fa fa-list"></i>Content History</a></li>
                     <li><a href="{{ route('contents.create') }}"><i class="fa fa-plus-circle"></i>Add New</a></li>
                 </ul>
             </li>
             <li>
-                <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">Weekly Reminders</span><span class="fa arrow"></a>
+                <a href="#"><i class="fa fa-clock-o"></i> <span class="nav-label">Weekly Reminders</span><span class="fa arrow"></a>
                 <ul class="nav nav-second-level collapse">
                     <li><a href="{{ route('weekly_reminders.index') }}"><i class="fa fa-list"></i>All Weekly Reminders</a></li>
                     <li><a href="{{ route('weekly_reminders.create') }}"><i class="fa fa-plus-circle"></i>Add New</a></li>

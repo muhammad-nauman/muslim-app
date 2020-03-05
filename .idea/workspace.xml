@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0676a830-bc45-4040-90d6-f7d94d2558f2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestionsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestionsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/questions/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questions/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/questions/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/questions/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/nav.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +205,7 @@
       <workItem from="1583050062035" duration="8515000" />
       <workItem from="1583152858124" duration="12367000" />
       <workItem from="1583322118647" duration="837000" />
-      <workItem from="1583323111207" duration="18020000" />
+      <workItem from="1583323111207" duration="20206000" />
     </task>
     <servers />
   </component>
@@ -234,18 +233,18 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="384" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1583323183072" />
-    <state x="379" y="0" width="737" height="728" key="find.popup" timestamp="1583395898664">
+    <state x="379" y="0" width="737" height="728" key="find.popup" timestamp="1583404286747">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="0" width="737" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1583395898664" />
+    <state x="379" y="0" width="737" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1583404286747" />
     <state x="339" y="162" key="run.anything.popup" timestamp="1583050931604">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1583050931604" />
-    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup" timestamp="1583402534339">
+    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup" timestamp="1583404828686">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1583402534339" />
+    <state x="365" y="159" width="672" height="547" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1583404828686" />
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1580553665542" />
   </component>
 </project>

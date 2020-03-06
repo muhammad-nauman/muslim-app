@@ -62,7 +62,7 @@ class PublishWeeklyReminders extends Command
         $optionBuilder = new OptionsBuilder();
         $optionBuilder->setTimeToLive(60*40);
 
-        $notificationBuilder = new PayloadNotificationBuilder('Ny Påminnelse: ' . $reminder->name);
+        $notificationBuilder = new PayloadNotificationBuilder('Ny Påminnelse: ' . $reminder->title);
         $notificationBuilder->setBody('Talare: ' . $reminder->author_name)
             ->setSound('default');
 

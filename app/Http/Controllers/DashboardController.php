@@ -67,6 +67,10 @@ class DashboardController extends Controller
 
         dd($downstreamResponse->numberSuccess(),
         $downstreamResponse->numberFailure(),
-        $downstreamResponse->numberModification());
+        $downstreamResponse->numberModification(),
+        $downstreamResponse->tokensToDelete(),
+        $downstreamResponse->tokensToModify(),
+        $downstreamResponse->tokensToRetry(),
+        $downstreamResponse->tokensWithError());
     }
 }

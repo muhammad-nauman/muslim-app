@@ -2,8 +2,13 @@
 
 namespace App\Console\Commands;
 
+use App\Device;
 use App\WeeklyReminder;
 use Illuminate\Console\Command;
+use LaravelFCM\Facades\FCM;
+use LaravelFCM\Message\OptionsBuilder;
+use LaravelFCM\Message\PayloadDataBuilder;
+use LaravelFCM\Message\PayloadNotificationBuilder;
 
 class PublishWeeklyReminders extends Command
 {
@@ -46,8 +51,41 @@ class PublishWeeklyReminders extends Command
             $weeklyReminder->status = 1;
             $weeklyReminder->published_at = now();
             $weeklyReminder->save();
+            $this->notify($weeklyReminder);
         });
 
         $this->info('All publishable weekly reminders are published');
+    }
+
+    public function notify(WeeklyReminder $reminder)
+    {
+        $optionBuilder = new OptionsBuilder();
+        $optionBuilder->setTimeToLive(60*40);
+
+        $notificationBuilder = new PayloadNotificationBuilder('Ny Påminnelse: ' . $reminder->name);
+        $notificationBuilder->setBody('Talare: ' . $reminder->author_name)
+            ->setSound('default');
+
+        $dataBuilder = new PayloadDataBuilder();
+        $dataBuilder->addData(['data' => $reminder]);
+
+        $option = $optionBuilder->build();
+        $notification = $notificationBuilder->build();
+        $data = $dataBuilder->build();
+
+        $tokens = Device::pluck('fcm_id')->toArray();
+
+        $downstreamResponse = FCM::sendTo($tokens, $option, $notification, $data);
+        info('Notifications Sent.');
+        info('Total Success Notifications: ' . $downstreamResponse->numberSuccess());
+        info('Total Failed Notifications: ' . $downstreamResponse->numberFailure());
+        return;
+//        dd($downstreamResponse->numberSuccess(),
+//            $downstreamResponse->numberFailure(),
+//            $downstreamResponse->numberModification(),
+//            $downstreamResponse->tokensToDelete(),
+//            $downstreamResponse->tokensToModify(),
+//            $downstreamResponse->tokensToRetry(),
+//            $downstreamResponse->tokensWithError());
     }
 }

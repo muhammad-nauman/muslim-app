@@ -19,7 +19,7 @@ class AlterQuestionsTable extends Migration
             }
             $table->dropColumn(['category_id', 'is_active']);
 
-            $table->unsignedBigInteger('quiz_id');
+            $table->unsignedBigInteger('quiz_id')->nullable();
 
             $table->foreign('quiz_id')
                 ->references('id')

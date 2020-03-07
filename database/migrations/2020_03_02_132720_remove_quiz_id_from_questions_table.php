@@ -14,7 +14,9 @@ class RemoveQuizIdFromQuestionsTable extends Migration
     public function up()
     {
         Schema::table('questions', function (Blueprint $table) {
-            $table->dropForeign('questions_quiz_id_foreign');
+            if(\Illuminate\Support\Facades\DB::getDriverName() != 'sqlite') {
+                $table->dropForeign('questions_quiz_id_foreign');
+            }
 
             $table->dropColumn('quiz_id');
         });

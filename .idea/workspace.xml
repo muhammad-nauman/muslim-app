@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0676a830-bc45-4040-90d6-f7d94d2558f2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_02_132720_remove_quiz_id_from_questions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_02_132720_remove_quiz_id_from_questions_table.php" afterDir="false" />
-    </list>
+    <list default="true" id="0676a830-bc45-4040-90d6-f7d94d2558f2" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -205,7 +203,7 @@
       <workItem from="1583152858124" duration="12367000" />
       <workItem from="1583322118647" duration="837000" />
       <workItem from="1583323111207" duration="21247000" />
-      <workItem from="1583480902436" duration="7293000" />
+      <workItem from="1583480902436" duration="7513000" />
     </task>
     <servers />
   </component>

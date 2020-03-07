@@ -18,7 +18,7 @@ class RemoveQuizIdFromQuestionsTable extends Migration
                 $table->dropForeign('questions_quiz_id_foreign');
             }
 
-            $table->dropColumn('quiz_id');
+            $table->dropColumn(['quiz_id']);
         });
     }
 

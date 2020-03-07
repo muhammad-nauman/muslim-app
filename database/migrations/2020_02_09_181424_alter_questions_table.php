@@ -14,7 +14,9 @@ class AlterQuestionsTable extends Migration
     public function up()
     {
         Schema::table('questions', function (Blueprint $table) {
-            $table->dropForeign('questions_category_id_foreign');
+            if(\Illuminate\Support\Facades\DB::getDriverName() != 'sqlite') {
+                $table->dropForeign('questions_category_id_foreign');
+            }
             $table->dropColumn(['category_id', 'is_active']);
 
             $table->unsignedBigInteger('quiz_id');

@@ -14,7 +14,7 @@ class AlterWeeklyRemindersTable extends Migration
     public function up()
     {
         Schema::table('weekly_reminders', function (Blueprint $table) {
-            $table->string('author_name');
+            $table->string('author_name')->nullable();
         });
     }
 

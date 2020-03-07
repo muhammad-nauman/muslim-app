@@ -15,8 +15,7 @@ class AlterQuestionsTable extends Migration
     {
         Schema::table('questions', function (Blueprint $table) {
             $table->dropForeign('questions_category_id_foreign');
-            $table->dropColumn('category_id');
-            $table->dropColumn('is_active');
+            $table->dropColumn(['category_id', 'is_active']);
 
             $table->unsignedBigInteger('quiz_id');
 

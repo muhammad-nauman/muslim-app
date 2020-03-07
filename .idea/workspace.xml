@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0676a830-bc45-4040-90d6-f7d94d2558f2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.env.ci" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/PublishWeeklyReminders.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/PublishWeeklyReminders.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +206,7 @@
       <workItem from="1583152858124" duration="12367000" />
       <workItem from="1583322118647" duration="837000" />
       <workItem from="1583323111207" duration="21247000" />
-      <workItem from="1583480902436" duration="3148000" />
+      <workItem from="1583480902436" duration="5662000" />
     </task>
     <servers />
   </component>

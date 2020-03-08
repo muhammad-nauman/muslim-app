@@ -15,7 +15,7 @@
     <a href="{{ route('contents.index') }}" class="btn btn-primary">Content History</a>
     <h1>Update Content</h1>
     <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{ route('contents.update', ['content' => $content->id]) }}">
-        
+
         {{ csrf_field() }}
         {{ method_field('PUT') }}
         <div class="form-group @error('category_id') has-error @enderror"><label class="col-lg-2 control-label">Category</label>
@@ -54,18 +54,19 @@
         <div class="form-group @error('file') has-error @enderror pace-inactive audio"><label class="col-lg-2 control-label">Audio File</label>
             <div class="col-lg-7">
                 <input type="file" name="file">
+                <input type="hidden" name="old_file" value="{{ $content->content }}">
                 @error('file')
                 <span class="help-block text-red m-b-none">{{ $message }}</span>
                 @enderror
             </div>
         </div>
-        
+
         <div class="form-group @error('content') has-error @enderror pace-inactive article"><label class="col-lg-2 control-label">Article Content</label>
             <div class="col-lg-7">
                 <textarea id="summernote" name="content">@if($content->type === 'article') {!! $content->content !!} @endif</textarea>
             </div>
         </div>
-        
+
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
                 <button class="btn btn-primary" type="submit">Create</button>

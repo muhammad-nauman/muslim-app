@@ -32,6 +32,8 @@ class DevicesController extends Controller
             ]
         );
 
+        info('IP address: '. optional($request->ip()));
+
         $device = Device::where('udid', request('udid'))->first();
         $last_active_session = now();
 

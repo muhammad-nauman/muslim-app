@@ -37,13 +37,11 @@ class DevicesController extends Controller
         $device = Device::where('udid', request('udid'))->first();
         $last_active_session = now();
 
-        if (isset($device->id)) {
+        if ( ! is_null($device)) {
             $last_active_session = now();
 
             $device->update(
-                [
-                'last_active_session' => now(),
-                ]
+                $request->all()
             );
             return response()->json(
                 [

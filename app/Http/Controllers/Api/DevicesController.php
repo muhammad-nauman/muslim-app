@@ -55,7 +55,7 @@ class DevicesController extends Controller
                 'fcm_id' => 'required',
             ]
         );
-        $device = Device::create($request->all());
+        $device = Device::create(array_merge($request->all(), compact('last_active_session')));
 
         return response()->json(
             [

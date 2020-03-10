@@ -67,9 +67,7 @@
                 <div class="form-group @error('type') has-error @enderror"><label class="col-lg-2 control-label">Type</label>
                     <div class="col-lg-7">
                         <select class="form-control" id="content_type" name="type">
-                            <option value="">Select Content Type</option>
                             <option value="audio" @if($weeklyReminder->type === 'audio') selected @endif>Audio</option>
-                            <option value="article" @if($weeklyReminder->type === 'article') selected @endif>Article</option>
                         </select>
                         @error('type')
                         <span class="help-block text-red m-b-none">{{ $message }}</span>

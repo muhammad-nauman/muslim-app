@@ -39,9 +39,9 @@
                 @enderror
             </div>
         </div>
-        <div class="form-group @error('author_name') has-error @enderror"><label class="col-lg-2 control-label">Author / Speaker</label>
+        <div class="form-group @error('author_name') has-error @enderror"><label class="col-lg-2 control-label">Speaker</label>
             <div class="col-lg-7">
-                <input type="text" name="author_name" placeholder="Author / Speaker Name" class="form-control" value="{{ old('author_name') }}">
+                <input type="text" name="author_name" placeholder="Speaker Name" class="form-control" value="{{ old('author_name') }}">
                 @error('author_name')
                 <span class="help-block text-red m-b-none">{{ $message }}</span>
                 @enderror
@@ -66,9 +66,8 @@
         <div class="form-group @error('type') has-error @enderror"><label class="col-lg-2 control-label">Type</label>
             <div class="col-lg-7">
                 <select class="form-control" id="content_type" name="type">
-                    <option value="">Select Content Type</option>
                     <option value="audio" @if(old('type') === 'audio') selected @endif>Audio</option>
-                    <option value="article" @if(old('type') === 'article') selected @endif>Article</option>
+{{--                    <option value="article" @if(old('type') === 'article') selected @endif>Article</option>--}}
                 </select>
                 @error('type')
                 <span class="help-block text-red m-b-none">{{ $message }}</span>
@@ -81,12 +80,6 @@
                 @error('file')
                 <span class="help-block text-red m-b-none">{{ $message }}</span>
                 @enderror
-            </div>
-        </div>
-
-        <div class="form-group @error('content') has-error @enderror pace-inactive article"><label class="col-lg-2 control-label">Article Content</label>
-            <div class="col-lg-7">
-                <textarea id="summernote" name="content"></textarea>
             </div>
         </div>
 

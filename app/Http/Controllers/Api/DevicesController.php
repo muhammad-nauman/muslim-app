@@ -70,7 +70,7 @@ class DevicesController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Responsex
      */
     public function show($id)
     {

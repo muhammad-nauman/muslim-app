@@ -80,6 +80,10 @@ class PublishWeeklyReminders extends Command
         info('Notifications Sent.');
         info('Total Success Notifications: ' . $downstreamResponse->numberSuccess());
         info('Total Failed Notifications: ' . $downstreamResponse->numberFailure());
+        info('Tokens to delete: ' . $downstreamResponse->tokensToDelete());
+        info('Tokens to Modify: ' . $downstreamResponse->tokensToModify());
+        info('Tokens to retry: ' . $downstreamResponse->tokensToRetry());
+        info('Tokens with errors: ' . $downstreamResponse->tokensWithError());
         return;
 //        dd($downstreamResponse->numberSuccess(),
 //            $downstreamResponse->numberFailure(),

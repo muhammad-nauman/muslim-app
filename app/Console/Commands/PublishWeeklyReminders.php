@@ -45,7 +45,7 @@ class PublishWeeklyReminders extends Command
     {
         info('Job Initialised');
         $weeklyReminders = WeeklyReminder::where('status', 0)
-            ->where('publishing_timestamp', '<=', now()->addHours(5))
+            ->where('publishing_timestamp', '<=', now()->timezone("Europe/Stockholm"))
             ->get();
 
         $weeklyReminders->map(function($weeklyReminder) {
@@ -74,7 +74,9 @@ class PublishWeeklyReminders extends Command
         $notification = $notificationBuilder->build();
         $data = $dataBuilder->build();
 
-        $tokens = Device::pluck('fcm_id')->toArray();
+        $tokens = Device::where('fcm_id', '!=', '909039283928329##@')
+            ->pluck('fcm_id')
+            ->toArray();
 
         $downstreamResponse = FCM::sendTo($tokens, $option, $notification, $data);
         info('Notifications Sent.');

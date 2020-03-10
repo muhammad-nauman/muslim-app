@@ -73,14 +73,14 @@ class WeeklyReminderController extends Controller
             $weeklyReminder->duration = get_audio_duration(get_storage_driver_path($path));
 
             $weeklyReminder->save();
-            return redirect()->route('weekly_reminders.index');
+            return redirect()->route('weekly_reminders.index', ['filter[status]' => 0]);
         }
 
         $weeklyReminder->content = $request->input('content');
 
         $weeklyReminder->save();
 
-        return redirect()->route('weekly_reminders.index');
+        return redirect()->route('weekly_reminders.index', ['filter[status]' => 0]);
     }
 
     /**
@@ -141,14 +141,14 @@ class WeeklyReminderController extends Controller
             $weeklyReminder->duration = get_audio_duration(get_storage_driver_path($path));
 
             $weeklyReminder->save();
-            return redirect()->route('weekly_reminders.index');
+            return redirect()->route('weekly_reminders.index', ['filter[status]' => 0]);
         }
 
         $weeklyReminder->content = $request->input('type') === 'audio' ? $request->input('old_file') : $request->input('content');
 
         $weeklyReminder->save();
 
-        return redirect()->route('weekly_reminders.index');
+        return redirect()->route('weekly_reminders.index', ['filter[status]' => 0]);
     }
 
     /**

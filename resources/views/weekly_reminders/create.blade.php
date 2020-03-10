@@ -13,7 +13,7 @@
 
 <div class="row">
     <div class="col-md-12">
-    <a href="{{ route('weekly_reminders.index') }}" class="btn btn-primary">Reminders History</a>
+    <a href="{{ route('weekly_reminders.index', ['filter[status]' => 0]) }}" class="btn btn-primary">Reminders History</a>
     <h1>New Content</h1>
     <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{ route('weekly_reminders.store') }}">
 

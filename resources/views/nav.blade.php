@@ -45,7 +45,7 @@
             <li>
                 <a href="#"><i class="fa fa-clock-o"></i> <span class="nav-label">Weekly Reminders</span><span class="fa arrow"></a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="{{ route('weekly_reminders.index') }}"><i class="fa fa-list"></i>All Weekly Reminders</a></li>
+                    <li><a href="{{ route('weekly_reminders.index', ['filter[status]' => 0]) }}"><i class="fa fa-list"></i>All Weekly Reminders</a></li>
                     <li><a href="{{ route('weekly_reminders.create') }}"><i class="fa fa-plus-circle"></i>Add New</a></li>
                 </ul>
             </li>

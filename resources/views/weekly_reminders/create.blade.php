@@ -49,7 +49,7 @@
         </div>
         <div class="form-group @error('publishing_timestamp') has-error @enderror"><label class="col-lg-2 control-label">Publish Date & Time</label>
             <div class="col-lg-7">
-                <input type="text" name="publishing_timestamp" placeholder="Publish Date & Time" id="publishing_timestamp" class="form-control" value="{{ old('publishing_timestamp') }}">
+                <input readonly type="text" name="publishing_timestamp" placeholder="Publish Date & Time" id="publishing_timestamp" class="form-control" value="{{ old('publishing_timestamp') }}">
                 @error('publishing_timestamp')
                 <span class="help-block text-red m-b-none">{{ $message }}</span>
                 @enderror

@@ -6,7 +6,7 @@
     <link href="{{ url('/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}" rel="stylesheet">
     <link href="{{ url('/css/plugins/summernote/summernote.css') }}" rel="stylesheet">
     <link href="{{ url('/css/plugins/summernote/summernote-bs3.css') }}" rel="stylesheet">
-    <link href="{{ url('/css/plugins/jquery.datetimepicker.min.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -114,7 +114,8 @@
     <!-- Custom and plugin javascript -->
     <script src="{{ url('/js/inspinia.js') }}"></script>
     <script src="{{ url('/js/plugins/pace/pace.min.js') }}"></script>
-    <script src="{{ url('/js/plugins/jquery.datetimepicker.full.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
     <script src="{{ url('/js/plugins/summernote/summernote.min.js') }}"></script>
 
 @endsection
@@ -146,10 +147,14 @@
             $(document).on('change', '#content_type', function() {
                 checkSelectedTypeOption();
             });
-            $('#expiring_timestamp, #publishing_timestamp').datetimepicker({
+            $('#publishing_timestamp').datetimepicker({
+                format: 'Y-MM-DD H:mm:ss',
                 minDate: new Date(),
-                format: 'Y-m-d H:m:s',
-                theme: 'dark'
+                sideBySide: true,
+                showClose: true,
+                ignoreReadonly: true,
+                timeZone: "Europe/Stockholm"
+
             });
         });
 

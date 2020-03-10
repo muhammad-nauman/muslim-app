@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('reminder:publish')->everyTenMinutes();
+        $schedule->command('reminder:publish')->everyMinute();
         $schedule->command('test:me')->everyMinute();
     }
 

@@ -79,6 +79,10 @@ class PublishWeeklyReminders extends Command
             ->toArray();
 
         $downstreamResponse = FCM::sendTo($tokens, $option, $notification, $data);
+        $tokensToDelete = $downstreamResponse->tokensToDelete();
+        if(count($tokensToDelete) > 0) {
+            Device::whereIn('fcm_id', $tokensToDelete)->delete();
+        }
         info('Notifications Sent.');
         info('Total Success Notifications: ' . $downstreamResponse->numberSuccess());
         info('Total Failed Notifications: ' . $downstreamResponse->numberFailure());

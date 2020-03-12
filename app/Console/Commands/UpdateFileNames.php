@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Content;
 use App\WeeklyReminder;
 use Illuminate\Console\Command;
 
@@ -43,12 +44,20 @@ class UpdateFileNames extends Command
         $weeklyReminders = WeeklyReminder::get();
 
         $weeklyReminders->map(function ($reminder) {
-            $this->info('Replacing special characters from ' . $reminder->title );
+            $this->info('Replacing special characters from Weekly Reminder ' . $reminder->title );
             $reminder->content = replace_special_alphabets($reminder->content);
             $reminder->save();
             return $reminder;
         });
+        $contents = Content::where('type', 'audio')->get();
 
-        $this->info('All the weekly reminders URL are successfully replaced with english characters.');
+        $contents->map(function ($content) {
+            $this->info('Replacing special characters from Content ' . $content->title);
+            $content->content = replace_special_alphabets($content->content);
+            $content->save();
+            return $content;
+        });
+
+        $this->info('All the weekly reminders and Contents URL are successfully replaced with english characters.');
     }
 }

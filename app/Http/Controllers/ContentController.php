@@ -56,7 +56,7 @@ class ContentController extends Controller
 
         if($request->input('type') === 'audio') {
             $fileName = $request->input('title') . '.' . $request->file->getClientOriginalExtension();
-            $path = $request->file->storeAs('public/audios', $fileName);
+            $path = $request->file->storeAs('public/audios', replace_special_alphabets($fileName));
             $content->content = $path;
 
             $content->duration = get_audio_duration(get_storage_driver_path($path));
@@ -122,7 +122,7 @@ class ContentController extends Controller
 
         if($request->hasFile('file') && $request->input('type') === 'audio') {
             $fileName = $request->input('title') . '.' . $request->file->getClientOriginalExtension();
-            $path = $request->file->storeAs('public/audios', $fileName);
+            $path = $request->file->storeAs('public/audios', replace_special_alphabets($fileName));
             $content->content = $path;
 
             $content->duration = get_audio_duration(get_storage_driver_path($path));

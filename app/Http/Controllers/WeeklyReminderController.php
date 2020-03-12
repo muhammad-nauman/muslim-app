@@ -67,7 +67,7 @@ class WeeklyReminderController extends Controller
 
         if($request->input('type') === 'audio') {
             $fileName = $request->input('title') . '.' . $request->file->getClientOriginalExtension();
-            $path = $request->file->storeAs('public/audios/reminders', $fileName);
+            $path = $request->file->storeAs('public/audios/reminders', replace_special_alphabets($fileName));
             $weeklyReminder->content = $path;
 
             $weeklyReminder->duration = get_audio_duration(get_storage_driver_path($path));
@@ -135,7 +135,7 @@ class WeeklyReminderController extends Controller
 
         if($request->hasFile('file') && $request->input('type') == 'audio') {
             $fileName = $request->input('title') . '.' . $request->file->getClientOriginalExtension();
-            $path = $request->file->storeAs('public/audios/reminders', $fileName);
+            $path = $request->file->storeAs('public/audios/reminders', replace_special_alphabets($fileName));
             $weeklyReminder->content = $path;
 
             $weeklyReminder->duration = get_audio_duration(get_storage_driver_path($path));

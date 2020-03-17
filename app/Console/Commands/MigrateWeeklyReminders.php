@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Category;
 use App\WeeklyReminder;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Storage;
 
 class MigrateWeeklyReminders extends Command
 {
@@ -57,7 +58,8 @@ class MigrateWeeklyReminders extends Command
                 'status' => 1,
                 'is_from_old_server' => 1,
                 'content' => 'public/audios/reminders/' . $fileName,
-                'author_name' => 'Muslim App Admin'
+                'author_name' => 'Muslim App Admin',
+                'is_file_exist' => Storage::exists('public/audios/reminders/' . $fileName) ? 1 : 0,
             ]);
         }
         $this->info('Migration Completed');

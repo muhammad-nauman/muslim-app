@@ -48,7 +48,7 @@ class AudioDurationCommand extends Command
                 $content->duration = get_audio_duration(get_storage_driver_path($content->content));
                 $content->save();
             } catch(Exception $e) {
-                $this->error($e->getMessage());
+                $this->error($e->getMessage() . $content->id);
             }
         });
 
@@ -61,7 +61,7 @@ class AudioDurationCommand extends Command
                 $reminder->duration = get_audio_duration(get_storage_driver_path($reminder->content));
                 $reminder->save();
             } catch(Exception $e) {
-                $this->error($e->getMessage());
+                $this->error($e->getMessage() . $reminder->id);
             }
         });
 

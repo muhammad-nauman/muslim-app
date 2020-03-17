@@ -42,26 +42,18 @@ class MigrateWeeklyReminders extends Command
     {
         $items = getData();
 
-        $this->info('Initialised Migration');
+        $this->info('Initialised Migrated Reminders Author Name Updation');
 
         foreach($items as $item) {
-            $element = json_decode($item['elements']);
-            $fileName = replace_special_alphabets(str_replace('%20', ' ', basename($element->{'90eee517-9c10-4297-a0d8-72c84ae74d22'}->url)));
-            $this->info('migrating: ' . $item['title']);
-            WeeklyReminder::create([
-                'title' => $item['title'],
-                'category_id' => Category::inRandomOrder()->first()->id,
-                'created_at' => $item['created_at'],
-                'updated_at' => $item['updated_at'],
-                'publishing_timestamp' => $item['publishing_timestamp'],
-                'type' => 'audio',
-                'status' => 1,
-                'is_from_old_server' => 1,
-                'content' => 'public/audios/reminders/' . $fileName,
-                'author_name' => 'Muslim App Admin',
-                'is_file_exist' => Storage::exists('public/audios/reminders/' . $fileName) ? 1 : 0,
-            ]);
+            $reminder = WeeklyReminder::where('title', $item['title'])->first();
+            if(! is_null($reminder)) {
+                $this->info('Updating: '. $item['title']);
+                $reminder->update([
+                    'author_name' => $item['created_by_alias']
+                ]);
+                $this->info('updated: '. json_encode($reminder->toArray()));
+            }
         }
-        $this->info('Migration Completed');
+        $this->info('Completed Migrated Reminders Author Name Updation');
     }
 }

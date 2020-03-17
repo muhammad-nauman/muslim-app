@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Content;
+use App\WeeklyReminder;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
@@ -51,6 +52,19 @@ class AudioDurationCommand extends Command
             }
         });
 
-        $this->info('Audio file durations are added successfully.');
+        $this->info('Audio file durations (from Content) are added successfully.');
+
+        $reminders = WeeklyReminder::withTrashed()->where('type', 'audio')->get();
+
+        $reminders->map(function($reminder) {
+            try {
+                $reminder->duration = get_audio_duration(get_storage_driver_path($reminder->content));
+                $reminder->save();
+            } catch(Exception $e) {
+                $this->error($e->getMessage());
+            }
+        });
+
+        $this->info('Audio file durations (from Reminders) are added successfully.');
     }
 }

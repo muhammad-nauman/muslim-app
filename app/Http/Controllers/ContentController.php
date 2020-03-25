@@ -124,7 +124,10 @@ class ContentController extends Controller
         $content->update($request->only('category_id', 'title', 'type'));
 
         if($request->hasFile('file') && $request->input('type') === 'audio') {
-            $fileName = $request->input('title') . '.' . $request->file->getClientOriginalExtension();
+            $extension = $request->file->getClientOriginalExtension() === 'mpga'
+            || $request->file->getClientOriginalExtension() === 'mpeg'
+                ? 'mp3' : $request->file->getClientOriginalExtension();
+            $fileName = $request->input('title') . '.' . $extension;
             $path = $request->file->storeAs('public/audios', replace_special_alphabets($fileName));
             $content->content = $path;
 

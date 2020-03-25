@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cd1a7f13-e2d9-4a11-9d5e-1dad72a1489b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/AudioDurationCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/AudioDurationCommand.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +150,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1584448258479</updated>
-      <workItem from="1584448264942" duration="3811000" />
+      <workItem from="1584448264942" duration="5003000" />
     </task>
     <servers />
   </component>

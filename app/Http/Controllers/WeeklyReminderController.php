@@ -66,7 +66,10 @@ class WeeklyReminderController extends Controller
         $weeklyReminder = new WeeklyReminder($request->only('category_id', 'author_name', 'title', 'type', 'publishing_timestamp'));
 
         if($request->input('type') === 'audio') {
-            $fileName = $request->input('title') . '.' . $request->file->getClientOriginalExtension();
+            $extension = $request->file->getClientOriginalExtension() === 'mpga'
+            || $request->file->getClientOriginalExtension() === 'mpeg'
+                ? 'mp3' : $request->file->getClientOriginalExtension();
+            $fileName = $request->input('title') . '.' . $extension;
             $path = $request->file->storeAs('public/audios/reminders', replace_special_alphabets($fileName));
             $weeklyReminder->content = $path;
 
@@ -134,7 +137,10 @@ class WeeklyReminderController extends Controller
             ->update($request->only('category_id', 'author_name', 'title', 'type', 'publishing_timestamp'));
 
         if($request->hasFile('file') && $request->input('type') == 'audio') {
-            $fileName = $request->input('title') . '.' . $request->file->getClientOriginalExtension();
+            $extension = $request->file->getClientOriginalExtension() === 'mpga'
+            || $request->file->getClientOriginalExtension() === 'mpeg'
+                ? 'mp3' : $request->file->getClientOriginalExtension();
+            $fileName = $request->input('title') . '.' . $extension;
             $path = $request->file->storeAs('public/audios/reminders', replace_special_alphabets($fileName));
             $weeklyReminder->content = $path;
 

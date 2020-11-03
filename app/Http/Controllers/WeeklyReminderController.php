@@ -24,6 +24,7 @@ class WeeklyReminderController extends Controller
 //        ]);
         $weeklyReminders = QueryBuilder::for(WeeklyReminder::class)
             ->allowedFilters('status')
+            ->defaultSort('-created_at')
             ->get();
 
         return view('weekly_reminders.index', [

@@ -38,7 +38,11 @@ class WeeklyRemindersController extends Controller
                 'title',
                 'content'
             ])
-            ->allowedSorts(AllowedSort::custom('popular', new PopularSort(), ''))
+            ->allowedSorts([
+                AllowedSort::custom('popular', new PopularSort(), ''),
+                'id',
+                'created_at'
+            ])
             ->defaultSort('-created_at')
             ->get()
             ->groupBy('type');

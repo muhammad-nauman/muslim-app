@@ -82,6 +82,7 @@
 <script>
     $(document).ready(function() {
         $('#DataTables_Table_0').DataTable({
+            order: [[ 0, 'desc' ], [ 4, 'desc' ]],
             dom: '<"html5buttons"B>lTfgitp',
             buttons: [{
                     extend: 'copy'
